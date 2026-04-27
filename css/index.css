@@ -1,1 +1,93 @@
-/* Index page styles */
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lab(91.82% -1.04 1.81);
+}
+
+header {
+  width: 100%;
+  height: 60px;
+}
+
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 80px;
+  background-color: #794c24;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.sub-text {
+  color: white;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+}
+.bars {
+  display: none;
+}
+
+.bars {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-links,
+  .call {
+    display: none;
+  }
+
+  .bars {
+    display: block;
+  }
+
+  .hidden-menu {
+    display: none;
+    flex-direction: column;
+  }
+}
