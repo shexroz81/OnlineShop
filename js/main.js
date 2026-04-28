@@ -27,6 +27,20 @@ bar.addEventListener("click", () => {
   mobileMenu.classList.toggle("active");
 });
 
+// Simple Auto Carousel
+const slides = document.querySelectorAll(".carousel-slide");
+let currentSlide = 0;
+
+function showSlide() {
+  slides.forEach((slide) => slide.classList.remove("active"));
+  slides[currentSlide].classList.add("active");
+  currentSlide = (currentSlide + 1) % slides.length;
+}
+
+// Start carousel
+showSlide();
+setInterval(showSlide, 3000);
+
 // Close menu
 closeBtn.addEventListener("click", () => {
   mobileMenu.classList.remove("active");
