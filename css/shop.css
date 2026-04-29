@@ -1,0 +1,84 @@
+/* Shop page styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1250px;
+  margin: 0 auto;
+}
+
+.product {
+  width: 250px;
+  height: 303px;
+  margin-bottom: 50px;
+}
+
+.p-image {
+  width: 236px;
+  height: 236px;
+  border: 2px solid rgb(138, 214, 25);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.p-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease-in;
+}
+
+.product h1 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+
+.product:hover .p-image img {
+  scale: calc(1.1);
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  transition: visibility 0.3s ease-in;
+  position: absolute;
+  gap: 10px;
+}
+
+.icons i {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.icons i:hover {
+  background-color: rgb(138, 214, 25);
+  color: white;
+}
+
+.p-image:hover .icons {
+  visibility: visible;
+}
