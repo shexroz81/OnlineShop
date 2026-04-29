@@ -82,8 +82,9 @@ body {
 
 .product-card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  height: 250px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
 .product-card h3 {
@@ -339,7 +340,7 @@ header {
 /* Searchbar Section */
 #searchbar {
   width: 100%;
-  padding: 80px 60px;
+  padding: 80px 60px 20px;
 }
 
 .searchbar-container {
@@ -727,6 +728,14 @@ header {
   .bars {
     display: block;
   }
+  .products-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -748,5 +757,13 @@ header {
 
   .navbar {
     padding: 15px 20px;
+  }
+  .products-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
