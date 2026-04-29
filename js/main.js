@@ -82,3 +82,26 @@ btn.addEventListener("click", function () {
     localStorage.setItem("theme", "light");
   }
 });
+
+// Products
+// async function getProducts() {
+//   try {
+//     const container = document.querySelector(".product-container");
+//     const res = await fetch("https://dummyjson.com/products");
+//     const data = await res.json();
+
+//     data.products.slice(0, 8).forEach((product) => {
+//       container.innerHTML += `
+//         <div class="product-card">
+//           <img src="${product.thumbnail}" alt="${product.title}">
+//           <h3>${product.title}</h3>
+//           <p>${product.description}</p>
+//         </div>
+//       `;
+//     });
+//   } catch (error) {
+//     console.error("Products olishda xatolik:", error);
+//   }
+// }
+
+// getProducts();

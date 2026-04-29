@@ -30,6 +30,97 @@ body {
   background: var(--card);
 }
 
+/* Products Section */
+#products {
+  width: 100%;
+  padding: 50px 0;
+}
+
+#products h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--text);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.product-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.products-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-color: #794c24;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  padding: 15px 15px 5px 15px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.product-card p {
+  padding: 0 15px 15px 15px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #794c24;
+}
+
+/* Dark mode product cards */
+body.dark .product-card {
+  background: var(--card);
+  border-color: #555;
+}
+
+body.dark .product-card h3 {
+  color: var(--text);
+}
+
+body.dark .product-card p {
+  color: #794c24;
+}
+
+body.dark .product-card:hover {
+  border-color: #794c24;
+  box-shadow: 0 8px 24px rgba(121, 76, 36, 0.3);
+}
+
 header {
   width: 100%;
   height: 60px;
