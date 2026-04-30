@@ -184,7 +184,9 @@ header {
   font-size: 20px;
   text-decoration: none;
   display: inline-block;
-  padding: 8px 16px;
+  padding: 8px ;
+  width: auto;
+  height: auto;
   border-radius: 8px;
   position: relative;
   transition: all 0.4s ease;
