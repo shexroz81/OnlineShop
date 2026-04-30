@@ -184,7 +184,7 @@ header {
   font-size: 20px;
   text-decoration: none;
   display: inline-block;
-  padding: 8px ;
+  padding: 8px;
   width: auto;
   height: auto;
   border-radius: 8px;
@@ -194,7 +194,7 @@ header {
 }
 
 .nav-links a::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -100%;
