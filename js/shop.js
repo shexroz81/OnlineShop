@@ -1,13 +1,13 @@
-const link = 'https://dummyjson.com/products'
+const link = "https://dummyjson.com/products";
 
 fetch(link)
   .then((res) => res.json())
   .then((data) => {
-    const products = document.getElementById('products')
+    const products = document.getElementById("products");
 
     data.products.forEach((item) => {
-      const div = document.createElement('div')
-      div.classList.add('product')
+      const div = document.createElement("div");
+      div.classList.add("product");
 
       div.innerHTML = `
         <div class="p-image">
@@ -22,9 +22,9 @@ fetch(link)
           <h1>${item.title}</h1>
           <bdi>$${item.price}</bdi>
         </div>
-      `
+      `;
 
-      products.appendChild(div)
-    })
+      products.appendChild(div);
+    });
   })
-  .catch((err) => console.error(err))
+  .catch((err) => console.error(err));
