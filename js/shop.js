@@ -22,7 +22,11 @@ fetch(link, {
             </div>
           </div>
           <div class="p-info">
+<<<<<<< HEAD
             <h1>${datas.title}</h1>
+=======
+            <h2>${datas.title}</h2>
+>>>>>>> bf26a32926086a2fd0444aaa1410988de30b190d
             <bdi>$${datas.price}</bdi>
           </div>
         `
