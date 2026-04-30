@@ -108,9 +108,23 @@ body {
   color: white;
 }
 
+.sub-text h4 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+}
+
 .social {
   display: flex;
   gap: 15px;
+}
+
+.social i {
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+}
+
+.social i:hover {
+  color: #DD3333;
 }
 
 .navbar-container {
@@ -187,6 +201,9 @@ body {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .searchbar-container {
