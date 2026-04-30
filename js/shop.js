@@ -7,7 +7,7 @@ fetch(link, {
   .then((res) => res.json())
   .then((data) => {
     data.products.forEach((datas) => {
-      if (datas.category == 'groceries') {
+      if (datas) {
         console.log(datas)
         const products = document.getElementById('products')
         const div = document.createElement('div')
