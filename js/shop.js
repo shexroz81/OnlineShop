@@ -7,7 +7,7 @@ fetch(link, {
   .then((res) => res.json())
   .then((data) => {
     data.products.forEach((datas) => {
-      if (datas.category == 'groceries') {
+      if (datas) {
         console.log(datas)
         const products = document.getElementById('products')
         const div = document.createElement('div')
@@ -21,9 +21,10 @@ fetch(link, {
               <i class="fa-solid fa-retweet"></i>
             </div>
           </div>
-          <h1>${datas.title}</h1>
-          <p>${datas.description}</p>
-          <h3>$${datas.price}</h3>
+          <div class="p-info">
+            <h1>${datas.title}</h1>
+            <bdi>$${datas.price}</bdi>
+          </div>
         `
         products.appendChild(div)
       }

@@ -19,6 +19,111 @@
     />
   </head>
   <body>
+    <header>
+      <div class="sub-header">
+        <div class="sub-header-container">
+          <div class="sub-text">
+            <h4>High Quality Products & Services</h4>
+          </div>
+
+          <div class="social">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-pinterest"></i>
+            <i class="fa-brands fa-telegram"></i>
+          </div>
+        </div>
+      </div>
+
+      <nav class="navbar">
+        <div class="navbar-container">
+          <div class="logo">
+            <h1>Online Shop</h1>
+            <img
+              src="../images/Icon-removebg-preview.png"
+              alt="Online Shop Logo"
+            />
+          </div>
+
+          <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="./shop.html">Shop</a>
+            <a href="./BestDeals.html">Best Deals</a>
+            <a href="./Organic.html">Organic Vegetables & Fruits</a>
+            <a href="./Order.html">Orders</a>
+            <a href="./contact.html">Contact Us</a>
+          </div>
+
+          <div class="call">
+            <i class="fa-solid fa-phone"></i>
+            <span>
+              <b>Call To:</b> <br>
+              <a href="#">+998 00 000 00 00</a>
+            </span>
+          </div>
+
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+          <div class="mobile-close">
+            <span>Close</span>
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+
+          <div class="mobile-text">
+            <div class="text-one">
+              <h3>Pages</h3>
+            </div>
+
+            <div class="text-two" id="category-btn">
+              <h3>Categories</h3>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+    </header>
+    <section id="searchbar">
+      <div class="searchbar-container">
+        <div class="dropdown">
+          <div class="dropdown-toggle">
+            <i class="fa-solid fa-bars"></i>
+            <span>All Departments</span>
+            <i class="fa-solid fa-angle-up"></i>
+          </div>
+          <ul class="dropdown-menu">
+            <li><a href="./BestDeals.html">Best Deals</a></li>
+            <li><a href="#">Bread</a></li>
+            <li><a href="#">Deals</a></li>
+            <li><a href="#">Juices</a></li>
+            <li><a href="#">Organic</a></li>
+            <li><a href="./Organic.html">Organic Vegetables & Fruits</a></li>
+          </ul>
+        </div>
+        <div class="search-input">
+          <input type="text" placeholder="Search products..." />
+          <button type="submit">
+            <i class="fa-solid fa-search"></i>
+          </button>
+        </div>
+        <div class="header-icons">
+          <div class="icon-item">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-shopping-cart" id="cart"></i>
+            <span class="cart-count" id="cart-count">0</span>
+          </div>
+          <div class="icon-item">
+            <button id="toggle"><i class="fa-solid fa-moon"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
     <section id="products"></section>
     <script src="../js/shop.js"></script>
   </body>
