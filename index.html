@@ -5,6 +5,173 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Online Shop</title>
     <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="website icon"
+      type="png"
+      href="./images/Icon-removebg-preview.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="sub-header">
+        <div class="sub-header-container">
+          <div class="sub-text">
+            <h4>High Quality Products & Services</h4>
+          </div>
+          <div class="social">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-pinterest"></i>
+            <i class="fa-brands fa-telegram"></i>
+          </div>
+        </div>
+      </div>
+      <div class="navbar">
+        <div class="navbar-container">
+          <div class="logo">
+            <h1>Online Shop</h1>
+            <img src="./images/Icon-removebg-preview.png" alt="" />
+          </div>
+          <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Best Deals</a>
+            <a href="#">Contact Us</a>
+            <a href="./pages/shop.html">Shop</a>
+          </div>
+          <div class="call">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call Us: +998 90 123 4567</span>
+          </div>
+          <div class="bars" id="bar">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+          <div class="mobile-close">
+            <span>Close</span>
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div class="mobile-text">
+            <div class="text-one"><h3>Pages</h3></div>
+            <div class="text-two" id="category-btn"><h3>Categories</h3></div>
+          </div>
+          <div class="mobile-links" id="mobile-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Best Deals</a>
+            <a href="#">Contact Us</a>
+            <a href="./pages/shop.html">Shop</a>
+          </div>
+          <div class="categories-link" id="categories-link">
+            <a href="#">Category 1</a>
+            <a href="#">Category 2</a>
+            <a href="#">Category 3</a>
+            <a href="#">Category 4</a>
+            <a href="#">Category 5</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section id="searchbar">
+        <div class="searchbar-container">
+          <div class="dropdown">
+            <div class="dropdown-toggle">
+              <i class="fa-solid fa-bars"></i>
+              <span>All Departments</span>
+              <i class="fa-solid fa-angle-up"></i>
+            </div>
+            <ul class="dropdown-menu">
+              <li><a href="#">Best Deals</a></li>
+              <li><a href="#">Bread</a></li>
+              <li><a href="#">Deals</a></li>
+              <li><a href="#">Juices</a></li>
+              <li><a href="#">Organic</a></li>
+              <li><a href="#">Organic Vegetables & Fruits</a></li>
+            </ul>
+          </div>
+          <div class="search-input">
+            <input type="text" placeholder="Search products..." />
+            <button type="submit">
+              <i class="fa-solid fa-search"></i>
+            </button>
+          </div>
+          <div class="header-icons">
+            <div class="icon-item">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-shopping-cart" id="cart"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+            <div class="icon-item">
+              <button id="toggle"><i class="fa-solid fa-moon"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="carousel">
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <div class="carousel-slide active">
+              <img
+                src="https://picsum.photos/seed/slide1/1200/400.jpg"
+                alt="Slide 1"
+              />
+              <div class="carousel-caption">
+                <h2>Summer Sale 2026</h2>
+                <p>Get up to 50% off on selected items</p>
+                <button class="carousel-btn">Shop Now</button>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://picsum.photos/seed/slide2/1200/400.jpg"
+                alt="Slide 2"
+              />
+              <div class="carousel-caption">
+                <h2>New Products</h2>
+                <p>Check out our latest collection</p>
+                <button class="carousel-btn">Explore</button>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <img
+                src="https://picsum.photos/seed/slide3/1200/400.jpg"
+                alt="Slide 3"
+              />
+              <div class="carousel-caption">
+                <h2>Free Orders</h2>
+                <p>On orders over $50</p>
+                <button class="carousel-btn">Learn More</button>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button class="carousel-prev">&lt;</button>
+            <button class="carousel-next">&gt;</button>
+          </div>
+          <div class="carousel-indicators">
+            <button class="indicator active" data-slide="0"></button>
+            <button class="indicator" data-slide="1"></button>
+            <button class="indicator" data-slide="2"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer></footer>
+    <script src="./js/main.js"></script>
+  </body>
 </html>
