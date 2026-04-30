@@ -12,10 +12,15 @@ fetch(link)
       div.innerHTML = `
         <div class="p-image">
           <img src="${item.thumbnail}" alt="${item.title}">
-          <div class="icons">
-            <i class="fa-brands fa-sistrix"></i>
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-retweet"></i>
+          <div class="p-icons">
+            <div class="icons">
+              <i class="fa-brands fa-sistrix"></i>
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-solid fa-retweet"></i>
+            </div>
+            <div class="add-product">
+              <i class="fa-solid fa-plus"></i>
+            </div>
           </div>
         </div>
         <div class="p-info">

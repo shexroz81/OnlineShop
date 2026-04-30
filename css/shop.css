@@ -424,3 +424,70 @@ body {
 #toggle:hover i {
   color: white;
 }
+
+
+
+/* ICONS */
+.p-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: absolute;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.p-image:hover .p-icons {
+  visibility: visible;
+}
+
+.icons i {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.icons i:hover {
+  background-color: #0A472E;
+  color: white;
+  transform: scale(1.1);
+}
+
+.add-product {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #0A472E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 210px;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  box-shadow:  0 0 5px rgba(0,0,0,0.2);
+}
+
+.add-product:hover {
+  background: #175e40;
+  transform: scale(1.05);
+}
+
+.add-product i {
+  color: white;
+  font-size: 18px;
+}
