@@ -834,6 +834,11 @@ header {
   list-style: none;
 }
 
+.titles li a {
+  text-decoration: none;
+  color: var(--text);
+}
+
 .titles li {
   font-size: 17px;
   font-weight: 600;
@@ -904,25 +909,7 @@ header {
   color: #794c24;
 }
 
-/* Responsive Food Cards */
-@media (max-width: 992px) {
-  .food-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .food-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 576px) {
-  .food-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Responsive Design */
 @media (max-width: 1200px) {
   .navbar {
     padding: 20px 40px;
@@ -949,6 +936,10 @@ header {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .food-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -957,6 +948,10 @@ header {
   }
   .dropdown {
     width: 100%;
+  }
+
+  .food-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -978,5 +973,9 @@ header {
 
   .products-grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .food-grid {
+    grid-template-columns: 1fr;
   }
 }
