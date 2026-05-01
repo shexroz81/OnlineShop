@@ -834,6 +834,11 @@ header {
   list-style: none;
 }
 
+.titles li a {
+  text-decoration: none;
+  color: var(--text);
+}
+
 .titles li {
   font-size: 17px;
   font-weight: 600;
