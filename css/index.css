@@ -164,6 +164,31 @@ header {
 
 .navbar {
   padding: 20px 80px;
+  background: var(--bg);
+  color: var(--text);
+  position: relative;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Sticky Header */
+.navbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 15px 80px;
+}
+
+.navbar.sticky .nav-links a {
+  color: #333;
+}
+
+.navbar.sticky .bars {
+  color: #333;
 }
 
 .navbar-container {
@@ -344,6 +369,22 @@ header {
 #searchbar {
   width: 100%;
   padding: 80px 60px 20px;
+  position: relative;
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* Sticky Searchbar */
+#searchbar.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px 60px;
+  z-index: 1001;
 }
 
 .searchbar-container {
@@ -1042,9 +1083,50 @@ header {
   transform: scale(1.1);
 }
 
+/* Footer Styles */
+footer {
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #794c24;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1.2s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(121, 76, 36, 0.3);
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  background: #5d3a1c;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(121, 76, 36, 0.4);
+}
+
 #favor {
   padding: 60px 20px;
-  background-color: red;
+  background-color: #d7d9db;
   width: 30%;
   display: none;
 }
@@ -1070,7 +1152,7 @@ header {
 .head-block h2 {
   font-size: 24px;
   font-weight: 600;
-  color: var(--bg);
+  color: black;
   margin: 0;
 }
 
