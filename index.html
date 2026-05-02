@@ -42,11 +42,10 @@
           </div>
           <div class="nav-links">
             <a href="#">Home</a>
+            <a href="./pages/Organic.html">Products</a>
+            <a href="#">Best Deals</a>
+            <a href="#">Contact Us</a>
             <a href="./pages/shop.html">Shop</a>
-            <a href="pages/BestDeals.html">Best Deals</a>
-            <a href="pages/Organic.html">Organic Vegatables & Fruits</a>
-            <a href="pages/Order.html">Orders</a>
-            <a href="pages/contact.html">Contact Us</a>
           </div>
           <div class="call">
             <i class="fa-solid fa-phone"></i>
@@ -88,12 +87,12 @@
           <div class="dropdown">
             <div class="dropdown-toggle">
               <i class="fa-solid fa-bars"></i>
-              <span>All Departments</span>
+              <span>All Pages</span>
               <i class="fa-solid fa-angle-up"></i>
             </div>
             <ul class="dropdown-menu">
               <li><a href="#">Best Deals</a></li>
-              <li><a href="#">Bread</a></li>
+              <li><a href="./pages/Organic.html">Products</a></li>
               <li><a href="#">Deals</a></li>
               <li><a href="#">Juices</a></li>
               <li><a href="#">Organic</a></li>
@@ -110,7 +109,7 @@
             <div class="icon-item">
               <i class="fa-solid fa-user"></i>
             </div>
-            <div class="icon-item">
+            <div class="icon-item" id="heart-btn">
               <i class="fa-solid fa-heart"></i>
             </div>
             <div class="icon-item">
@@ -223,8 +222,42 @@
           </div>
         </div>
       </section>
+      <section id="foods">
+        <div class="food-container">
+          <div class="title-box">
+            <ul class="titles">
+              <li class="active">Foods</li>
+              <li>Clothes</li>
+              <li><a href="./pages/shop.html">Others</a></li>
+            </ul>
+          </div>
+          <div class="food">
+            <div class="food-grid" id="food-grid"></div>
+          </div>
+        </div>
+      </section>
+      <section id="favor">
+        <div class="favor-container">
+          <div class="head-block">
+            <div class="icon-item">
+              <i class="fa-solid fa-shopping-cart"></i>
+            </div>
+            <h2>Favourites</h2>
+            <div class="icon-item" id="close">
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+          </div>
+          <div class="added-item" id="added-item"></div>
+        </div>
+      </section>
     </main>
-    <footer></footer>
+
+    <footer>
+      <!-- Scroll to Top Button -->
+      <button class="scroll-to-top" id="scrollToTop">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </footer>
     <script src="./js/main.js"></script>
   </body>
 </html>
