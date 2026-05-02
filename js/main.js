@@ -289,11 +289,37 @@ async function getFoodProducts() {
 function setupFoodCardIcons() {
   const heartBtns = document.querySelectorAll(".heart-btn");
   const cartBtns = document.querySelectorAll(".cart-btn");
+  const addedItem = document.querySelector(".added-item");
+  const foodCards = document.querySelectorAll(".food-card");
 
-  heartBtns.forEach((btn) => {
+  heartBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      alert("Added to favorites");
+      const card = foodCards[index];
+      const title = card.querySelector("h3").textContent;
+      const price = card.querySelector(".price").textContent;
+      const img = card.querySelector("img").src;
+
+      // Bosilgan card ma'lumotlarini olish
+      const cardData = {
+        title: title,
+        price: price,
+        image: img,
+        index: index,
+      };
+
+      const itemHtml = `
+        <div class="favor-item">
+          <img src="${img}" alt="${title}">
+          <div class="favor-info">
+            <h4>${title}</h4>
+            <span>${price}</span>
+          </div>
+          <button class="remove-favor" onclick="this.parentElement.remove()">×</button>
+        </div>
+      `;
+
+      addedItem.innerHTML += itemHtml;
       btn.classList.toggle("liked");
     });
   });
