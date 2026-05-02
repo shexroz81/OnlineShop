@@ -291,6 +291,7 @@ function setupFoodCardIcons() {
   const cartBtns = document.querySelectorAll(".cart-btn");
   const addedItem = document.querySelector(".added-item");
   const foodCards = document.querySelectorAll(".food-card");
+  const popUp = document.querySelector(".pop-up");
 
   heartBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
@@ -307,6 +308,30 @@ function setupFoodCardIcons() {
         image: img,
         index: index,
       };
+
+      // Popup ni olish yoki yaratish
+      let popup = document.querySelector(".pop-up");
+      if (!popup) {
+        popup = document.createElement("div");
+        popup.className = "pop-up";
+        document.body.appendChild(popup);
+      }
+
+      popup.innerHTML = `
+        <div class="popup-alert">
+          <div class="popup-message">
+            <span>Product added to favourites</span>
+            <button class="popup-x" onclick="this.parentElement.parentElement.classList.remove('actives')">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      popup.classList.add("actives");
+
+      setTimeout(() => {
+        popup.classList.remove("actives");
+      }, 1000);
 
       const itemHtml = `
         <div class="favor-item">
@@ -334,11 +359,10 @@ function setupFoodCardIcons() {
   });
 }
 
-getFoodProducts();
-
-setTimeout(() => {
+// Function ni chaqirish va keyin iconlarni setup qilish
+getFoodProducts().then(() => {
   setupFoodCardIcons();
-}, 100);
+});
 
 const heartBtn = document.getElementById("heart-btn");
 const close = document.getElementById("close");
