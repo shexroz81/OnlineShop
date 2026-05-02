@@ -909,6 +909,118 @@ header {
   color: #794c24;
 }
 
+/* Food Card Hover Overlay */
+.food-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.food-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.icon-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  color: #333;
+}
+
+.icon-btn:hover {
+  background: #794c24;
+  color: white;
+  transform: scale(1.1);
+}
+
+.icon-btn.heart-btn.liked {
+  background: #e74c3c;
+  color: white;
+}
+
+#favor {
+  padding: 60px 20px;
+  background-color: red;
+  width: 30%;
+  display: none;
+}
+
+.favor-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+}
+
+.head-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.head-block h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--bg);
+  margin: 0;
+}
+
+.head-block i:last-child {
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+}
+
+#favor.active-favor {
+  display: block;
+  animation: slideIn 0.8s ease-in-out;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .navbar {
@@ -939,6 +1051,18 @@ header {
 
   .food-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #favor {
+    width: 100%;
+  }
+
+  .head-block h2 {
+    font-size: 20px;
+  }
+
+  .head-block i:last-child {
+    font-size: 20px;
   }
 }
 

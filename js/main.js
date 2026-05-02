@@ -264,6 +264,16 @@ async function getFoodProducts() {
           <h3>${product.title}</h3>
           <p>${product.description}</p>
           <span class="price">$${product.price}</span>
+          <div class="card-overlay">
+            <div class="icon-container">
+              <div class="icon-btn heart-btn">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div class="icon-btn cart-btn">
+                <i class="fa-solid fa-shopping-cart"></i>
+              </div>
+            </div>
+          </div>
         </div>
       `;
     });
@@ -276,5 +286,41 @@ async function getFoodProducts() {
   }
 }
 
-// Function ni chaqirish
+function setupFoodCardIcons() {
+  const heartBtns = document.querySelectorAll(".heart-btn");
+  const cartBtns = document.querySelectorAll(".cart-btn");
+
+  heartBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      alert("Added to favorites");
+      btn.classList.toggle("liked");
+    });
+  });
+
+  cartBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const cartCount = document.getElementById("cart-count");
+      const currentCount = parseInt(cartCount.textContent);
+      cartCount.textContent = currentCount + 1;
+    });
+  });
+}
+
 getFoodProducts();
+
+setTimeout(() => {
+  setupFoodCardIcons();
+}, 100);
+
+const heartBtn = document.getElementById("heart-btn");
+const close = document.getElementById("close");
+heartBtn.addEventListener("click", () => {
+  const favorSection = document.getElementById("favor");
+  favorSection.classList.toggle("active-favor");
+});
+close.addEventListener("click", () => {
+  const favorSection = document.getElementById("favor");
+  favorSection.classList.remove("active-favor");
+});
