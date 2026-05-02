@@ -104,7 +104,7 @@ body {
 
 .input-wrapper input {
   width: 100%;
-  padding: 10px 10px 10px 35px;
+  padding: 10px 40px 10px 35px;
   border: 2px solid #e1e8ed;
   border-radius: 6px;
   font-size: 13px;
@@ -126,18 +126,28 @@ body {
 
 .toggle-password {
   position: absolute;
-  right: 12px;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   color: #999;
   cursor: pointer;
-  font-size: 14px;
-  transition: color 0.3s ease;
-  z-index: 1;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
 }
 
 .toggle-password:hover {
   color: #794c24;
+  background: rgba(121, 76, 36, 0.1);
 }
 
 .form-checkbox {
