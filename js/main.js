@@ -350,3 +350,25 @@ close.addEventListener("click", () => {
   const favorSection = document.getElementById("favor");
   favorSection.classList.remove("active-favor");
 });
+
+// Searchbar sticky functionality
+window.addEventListener("scroll", () => {
+  const searchbar = document.getElementById("searchbar");
+  const scrollToTop = document.getElementById("scrollToTop");
+
+  if (window.scrollY > 80) {
+    searchbar.classList.add("sticky");
+    scrollToTop.classList.add("show");
+  } else {
+    searchbar.classList.remove("sticky");
+    scrollToTop.classList.remove("show");
+  }
+});
+
+// Scroll to Top functionality
+document.getElementById("scrollToTop").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
