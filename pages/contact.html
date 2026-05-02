@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/contact.css" />
   </head>
@@ -70,6 +71,48 @@
           </div>
         </div>
     </header>
+    <main>
+      <section id="searchbar">
+        <div class="searchbar-container">
+          <div class="dropdown">
+            <div class="dropdown-toggle">
+              <i class="fa-solid fa-bars"></i>
+              <span>All Pages</span>
+              <i class="fa-solid fa-angle-up"></i>
+            </div>
+            <ul class="dropdown-menu">
+              <li><a href="#">Best Deals</a></li>
+              <li><a href="./pages/Organic.html">Products</a></li>
+              <li><a href="#">Deals</a></li>
+              <li><a href="#">Juices</a></li>
+              <li><a href="#">Organic</a></li>
+              <li><a href="#">Organic Vegetables & Fruits</a></li>
+            </ul>
+          </div>
+          <div class="search-input">
+            <input type="text" placeholder="Search products..." />
+            <button type="submit">
+              <i class="fa-solid fa-search"></i>
+            </button>
+          </div>
+          <div class="header-icons">
+            <div class="icon-item">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="icon-item" id="heart-btn">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="icon-item">
+              <i class="fa-solid fa-shopping-cart" id="cart"></i>
+              <span class="cart-count" id="cart-count">0</span>
+            </div>
+            <div class="icon-item">
+              <button id="toggle"><i class="fa-solid fa-moon"></i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <script src="../js/main.js"></script>
   </body>
 </html>
