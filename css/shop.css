@@ -126,7 +126,7 @@ body {
 }
 
 .social i:hover {
-  color: #DD3333;
+  color: #4caf50;
 }
 
 .navbar-container {
@@ -189,7 +189,7 @@ body {
 }
 
 .call span a:hover {
-  color: #DD3333;
+  color: #4caf50;
 }
 
 /* Searchbar Section */
@@ -1078,6 +1078,7 @@ footer {
   color: white;
   padding: 60px 0 0;
   margin-top: 80px;
+  padding-bottom: 30px;
 }
 
 .footer-container {
@@ -1215,7 +1216,6 @@ footer {
   transform: scale(1.1);
 }
 
-/* Footer Responsive Design */
 @media (max-width: 992px) {
   .footer-section {
     grid-template-columns: repeat(2, 1fr);
