@@ -1,35 +1,272 @@
-const link = "https://dummyjson.com/products";
+const API = "https://dummyjson.com/products?limit=28";
 
-fetch(link)
+let allProducts = [];
+let filteredProducts = [];
+let currentView = "grid";
+let cart = [];
+
+fetch(API)
   .then((res) => res.json())
   .then((data) => {
-    const products = document.getElementById("products");
+    allProducts = data.products;
+    filteredProducts = [...allProducts];
+    render();
+  });
 
-    data.products.forEach((item) => {
-      const div = document.createElement("div");
-      div.classList.add("product");
+function createCartSidebar() {
+  if (document.getElementById("cart-sidebar")) return;
 
-      div.innerHTML = `
-        <div class="p-image">
-          <img src="${item.thumbnail}" alt="${item.title}">
-          <div class="p-icons">
-            <div class="icons">
-              <i class="fa-brands fa-sistrix"></i>
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-retweet"></i>
-            </div>
-            <div class="add-product">
-              <i class="fa-solid fa-plus"></i>
-            </div>
+  const overlay = document.createElement("div");
+  overlay.id = "cart-overlay";
+  overlay.addEventListener("click", closeCart);
+
+  const sidebar = document.createElement("div");
+  sidebar.id = "cart-sidebar";
+  sidebar.innerHTML = `
+    <div class="cart-header">
+      <h2>Shopping Cart</h2>
+      <button class="cart-close" id="cart-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cart-total-price">$0.00</strong>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+      <button class="continue-btn" onclick="closeCart()">Continue Shopping</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(sidebar);
+
+  document.getElementById("cart-close").addEventListener("click", closeCart);
+}
+
+function openCart() {
+  document.getElementById("cart-sidebar").classList.add("open");
+  document.getElementById("cart-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+  document.getElementById("cart-sidebar").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function addToCart(item) {
+  const existing = cart.find((c) => c.id === item.id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...item, qty: 1 });
+  }
+  updateCartUI();
+  openCart();
+  animateCartIcon();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter((c) => c.id !== id);
+  updateCartUI();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find((c) => c.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else updateCartUI();
+}
+
+function updateCartUI() {
+  const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+  const count = cart.reduce((sum, c) => sum + c.qty, 0);
+
+  const badge = document.getElementById("cart-count");
+  if (badge) {
+    badge.textContent = count;
+    badge.style.display = count > 0 ? "flex" : "none";
+  }
+
+  const totalEl = document.getElementById("cart-total-price");
+  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+
+  const itemsEl = document.getElementById("cart-items");
+  if (!itemsEl) return;
+
+  if (cart.length === 0) {
+    itemsEl.innerHTML = `
+      <div class="cart-empty">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <p>Your cart is empty</p>
+      </div>
+    `;
+    return;
+  }
+
+  itemsEl.innerHTML = cart
+    .map(
+      (c) => `
+    <div class="cart-item" data-id="${c.id}">
+      <img src="${c.thumbnail}" alt="${c.title}">
+      <div class="cart-item-info">
+        <p class="cart-item-title">${c.title}</p>
+        <p class="cart-item-price">$${(c.price * c.qty).toFixed(2)}</p>
+        <div class="cart-item-qty">
+          <button onclick="changeQty(${c.id}, -1)"><i class="fa-solid fa-minus"></i></button>
+          <span>${c.qty}</span>
+          <button onclick="changeQty(${c.id}, 1)"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+      <button class="cart-item-remove" onclick="removeFromCart(${c.id})">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  `
+    )
+    .join("");
+}
+
+function animateCartIcon() {
+  const cartIcon = document.getElementById("cart");
+  if (!cartIcon) return;
+  cartIcon.classList.add("cart-bounce");
+  setTimeout(() => cartIcon.classList.remove("cart-bounce"), 400);
+}
+
+function render() {
+  renderProducts();
+  updateCount();
+}
+
+function renderProducts() {
+  const container = document.getElementById("products");
+  container.innerHTML = "";
+  container.className = currentView === "list" ? "list-view" : "";
+
+  if (filteredProducts.length === 0) {
+    container.innerHTML = `<p style="padding:60px;text-align:center;font-family:'DM Sans',sans-serif;color:#888;">Mahsulot topilmadi.</p>`;
+    return;
+  }
+
+  filteredProducts.forEach((item) => {
+    const div = document.createElement("div");
+    div.classList.add("product");
+
+    const original = (item.price / (1 - item.discountPercentage / 100)).toFixed(2);
+    const hasDiscount = item.discountPercentage >= 10;
+
+    const priceHTML = hasDiscount
+      ? `<bdi><s style="color:#aaa;font-size:13px;font-weight:400;">$${original}</s> $${item.price.toFixed(2)}</bdi>`
+      : `<bdi>$${item.price.toFixed(2)}</bdi>`;
+
+    div.innerHTML = `
+      <div class="p-image">
+        ${hasDiscount ? `<span class="sale-badge">Sale!</span>` : ""}
+        <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+        <div class="p-icons">
+          <div class="icons">
+            <i class="fa-brands fa-sistrix" title="Quick View"></i>
+            <i class="fa-regular fa-heart" title="Wishlist"></i>
+            <i class="fa-solid fa-retweet" title="Compare"></i>
+          </div>
+          <div class="add-product" title="Add to Cart">
+            <i class="fa-solid fa-plus"></i>
           </div>
         </div>
-        <div class="p-info">
-          <h1>${item.title}</h1>
-          <bdi>$${item.price}</bdi>
-        </div>
-      `;
+      </div>
+      <div class="p-info">
+        <h1>${item.title}</h1>
+        <div class="p-rating">${renderStars(item.rating)} <span>(${item.rating})</span></div>
+        <p class="p-desc">${item.description}</p>
+        ${priceHTML}
+        <button class="add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+      </div>
+    `;
 
-      products.appendChild(div);
-    });
-  })
+    div.querySelector(".add-product").addEventListener("click", () => addToCart(item));
 
+    div.querySelector(".add-to-cart-btn").addEventListener("click", () => addToCart(item));
+
+    container.appendChild(div);
+  });
+}
+
+function renderStars(rating) {
+  let stars = "";
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) stars += `<i class="fa-solid fa-star"></i>`;
+    else if (rating >= i - 0.5) stars += `<i class="fa-solid fa-star-half-stroke"></i>`;
+    else stars += `<i class="fa-regular fa-star"></i>`;
+  }
+  return stars;
+}
+
+function updateCount() {
+  const el = document.getElementById("results-count");
+  if (!el) return;
+  el.textContent = `Showing ${filteredProducts.length} Results`;
+}
+
+const searchInput = document.querySelector(".search-input input");
+const searchBtn = document.querySelector(".search-input button");
+
+function doSearch() {
+  const q = searchInput.value.trim().toLowerCase();
+  filteredProducts = q
+    ? allProducts.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      )
+    : [...allProducts];
+  render();
+}
+
+searchBtn.addEventListener("click", doSearch);
+searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+
+let searchTimer;
+searchInput.addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(doSearch, 350);
+});
+
+document.getElementById("sort-select").addEventListener("change", function () {
+  filteredProducts = [...filteredProducts];
+  switch (this.value) {
+    case "low-high":   filteredProducts.sort((a, b) => a.price - b.price); break;
+    case "high-low":   filteredProducts.sort((a, b) => b.price - a.price); break;
+    case "rating":     filteredProducts.sort((a, b) => b.rating - a.rating); break;
+    case "latest":     filteredProducts.sort((a, b) => b.id - a.id); break;
+    case "popularity": filteredProducts.sort((a, b) => b.stock - a.stock); break;
+    default:
+      filteredProducts = allProducts.filter((p) =>
+        searchInput.value ? p.title.toLowerCase().includes(searchInput.value.toLowerCase()) : true
+      );
+  }
+  render();
+});
+
+document.getElementById("grid-btn").addEventListener("click", function () {
+  currentView = "grid";
+  this.classList.add("active");
+  document.getElementById("list-btn").classList.remove("active");
+  render();
+});
+
+document.getElementById("list-btn").addEventListener("click", function () {
+  currentView = "list";
+  this.classList.add("active");
+  document.getElementById("grid-btn").classList.remove("active");
+  render();
+});
+
+document.getElementById("cart")?.addEventListener("click", openCart);
+
+createCartSidebar();
+updateCartUI();

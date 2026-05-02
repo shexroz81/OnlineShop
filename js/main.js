@@ -199,8 +199,16 @@ searchBtn.addEventListener("click", searchProduct);
 
 async function getFoodProducts() {
   try {
+    console.log("API dan ma'lumot olish boshlandi...");
     const response = await fetch("https://dummyjson.com/products");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const data = await response.json();
+    console.log("API dan ma'lumot keldi:", data);
+    console.log("Jami products soni:", data.products.length);
 
     const foodProducts = data.products.filter((product) => {
       const category = product.category.toLowerCase();
@@ -245,10 +253,22 @@ async function getFoodProducts() {
       );
     });
 
+    console.log("Food products filterdan keyin:", foodProducts.length);
+
     const foodArray = [];
     const foodGrid = document.getElementById("food-grid");
 
-    foodProducts.slice(0, 8).forEach((product) => {
+    // Old content ni tozalash
+    foodGrid.innerHTML = "";
+
+    foodProducts.slice(0, 8).forEach((product, index) => {
+      console.log(
+        `${index + 1}. Product:`,
+        product.title,
+        "Image:",
+        product.thumbnail,
+      );
+
       foodArray.push({
         title: product.title,
         description: product.description,
@@ -260,7 +280,7 @@ async function getFoodProducts() {
       // HTML yaratish
       foodGrid.innerHTML += `
         <div class="food-card">
-          <img src="${product.thumbnail}" alt="${product.title}">
+          <img src="${product.thumbnail}" alt="${product.title}" onerror="console.error('Rasm yuklanmadi:', '${product.thumbnail}')">
           <h3>${product.title}</h3>
           <p>${product.description}</p>
           <span class="price">$${product.price}</span>
@@ -279,9 +299,21 @@ async function getFoodProducts() {
     });
 
     console.log("8 ta ovqatlar array:", foodArray);
+    console.log("Food grid HTML:", foodGrid.innerHTML);
     return foodArray;
   } catch (error) {
     console.error("Ovqatlar olishda xatolik:", error);
+
+    // Xatolik bo'lsa, demo ma'lumotlarini ko'rsatish
+    const foodGrid = document.getElementById("food-grid");
+    foodGrid.innerHTML = `
+      <div style="text-align: center; padding: 20px; color: red;">
+        <h3>API dan ma'lumot olishda xatolik</h3>
+        <p>Xatolik: ${error.message}</p>
+        <p>Internet connection ni tekshiring</p>
+      </div>
+    `;
+
     return [];
   }
 }
@@ -291,6 +323,7 @@ function setupFoodCardIcons() {
   const cartBtns = document.querySelectorAll(".cart-btn");
   const addedItem = document.querySelector(".added-item");
   const foodCards = document.querySelectorAll(".food-card");
+  const popUp = document.querySelector(".pop-up");
 
   heartBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
@@ -307,6 +340,30 @@ function setupFoodCardIcons() {
         image: img,
         index: index,
       };
+
+      // Popup ni olish yoki yaratish
+      let popup = document.querySelector(".pop-up");
+      if (!popup) {
+        popup = document.createElement("div");
+        popup.className = "pop-up";
+        document.body.appendChild(popup);
+      }
+
+      popup.innerHTML = `
+        <div class="popup-alert">
+          <div class="popup-message">
+            <span>Product added to favourites</span>
+            <button class="popup-x" onclick="this.parentElement.parentElement.classList.remove('actives')">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      popup.classList.add("actives");
+
+      setTimeout(() => {
+        popup.classList.remove("actives");
+      }, 1000);
 
       const itemHtml = `
         <div class="favor-item">
@@ -334,21 +391,34 @@ function setupFoodCardIcons() {
   });
 }
 
-getFoodProducts();
-
-setTimeout(() => {
+// Function ni chaqirish va keyin iconlarni setup qilish
+getFoodProducts().then(() => {
   setupFoodCardIcons();
-}, 100);
+});
 
 const heartBtn = document.getElementById("heart-btn");
 const close = document.getElementById("close");
+const userIcon = document.querySelector(
+  ".icon-item a[href='./pages/profile.html']",
+);
+
 heartBtn.addEventListener("click", () => {
   const favorSection = document.getElementById("favor");
   favorSection.classList.toggle("active-favor");
 });
+
 close.addEventListener("click", () => {
   const favorSection = document.getElementById("favor");
   favorSection.classList.remove("active-favor");
+});
+
+// User icon click event
+userIcon.addEventListener("click", (e) => {
+  e.preventDefault(); // Default link behavior ni to'xtatish
+  console.log("User icon clicked - opening profile page");
+
+  // Profile page ga redirect
+  window.location.href = "./pages/profile.html";
 });
 
 // Searchbar sticky functionality
