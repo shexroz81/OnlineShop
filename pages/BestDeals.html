@@ -4,10 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Best Deals</title>
-    <link rel="stylesheet" href="../css/BestDeals.css" />
+    <link rel="stylesheet" href="../css/BestDeals.css"/>
+    <link
+      rel="website icon"
+      type="png"
+      href="./images/Icon-removebg-preview.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"  
+    />
   </head>
-  <body>
-    <!-- Header Section -->
+    <body>
+      <!-- Header Section -->
       <header>
       <div class="sub-header">
         <div class="sub-header-container">
@@ -73,33 +85,160 @@
     <!--end of header-->
     <!-- Best Deals Section -->
     <section id="best-deals">
-      <div class="Deals-backround">
-      <div class="Deals-container">
-          <div class="dropdown">
-              <div class="dropdown-toggle">
-                <i class="fa-solid fa-bars"></i>
-                <span>All Departments</span>
-                <i class="fa-solid fa-angle-up"></i>
-              </div>
-              <ul class="dropdown-menu">
-                <li><a href="#">Best Deals</a></li>
-                <li><a href="#">Bread</a></li>
-                <li><a href="#">Deals</a></li>
-                <li><a href="#">Juices</a></li>
-                <li><a href="#">Organic</a></li>
-                <li><a href="#">Organic Vegetables & Fruits</a></li>
-              </ul>
+      <div class="best-deals-container">
+        <div class="best-left">
+            <div class="dropdown">
+            <div class="dropdown-toggle">
+              <i class="fa-solid fa-bars"></i>
+              <span>All Departments</span>
+              <i class="fa-solid fa-angle-up"></i>
             </div>
-          <div class="Deals-search">
-            <input type="text" placeholder="Search for best deals..." />
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Best Deals</a></li>
+              <li><a href="#">Bread</a></li>
+              <li><a href="#">Deals</a></li>
+              <li><a href="#">Juices</a></li>
+              <li><a href="#">Organic</a></li>
+              <li><a href="#">Organic Vegetables & Fruits</a></li>
+            </ul>
           </div>
+        </div>
+        <div class="best-right">
+          <div class="best-right-top">
+            <div class="search-input">
+              <input type="text" placeholder="Search products..." />
+              <button type="submit">
+                <i class="fa-solid fa-search"></i>
+              </button>
+            </div>
+            <div class="header-icons">
+              <div class="icon-item">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="icon-item">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <div class="icon-item">
+                <i class="fa-solid fa-shopping-cart" id="cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+              </div>
+              <div class="icon-item">
+                <button id="toggle"><i class="fa-solid fa-moon"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="best-right-bottom">
+            <div class="rightBottom-info">
+              <div class="categ-bestDeals">
+                <h3>Category: Best Deals</h3>
+              </div>
+              <div class="best-pages">
+                <h3>
+                  <a href="./index.html">Home /</a>
+                  <a href="./pages/shop.html">Products /</a>
+                  <a href="./pages/best-deals.html">Best</a>
+                </h3>
+              </div>
+            </div>
+            <div class="all-results">
+              <div class="result-showing">
+                <p>Showing 1–12 of 50 results</p>
+              </div>
+              <div class="choose-bar">
+                <ul>
+                  <li><button><i class="fa-solid fa-list"></i></button></li>
+                  <li><button><i class="fa-solid fa-grip-horizontal"></i></button></li>
+                  <li>
+                    <select name="" id="sort">
+                      <option value="">Default sorting</option>
+                      <option value="">Sort by popularity</option>
+                      <option value="">Sort by average rating</option>
+                      <option value="">Sort by latest</option>
+                      <option value="">Sort by price: low to high</option>
+                      <option value="">Sort by price: high to low</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="best-products"></div>
         </div>
       </div>
     </section>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-section">
+          <div class="footer-about">
+            <h3>Online Shop</h3>
+            <p>
+              Your trusted online shopping destination for quality products at
+              affordable prices.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Best Deals</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-categories">
+            <h3>Categories</h3>
+            <ul>
+              <li><a href="#">Electronics</a></li>
+              <li><a href="#">Fashion</a></li>
+              <li><a href="#">Home & Garden</a></li>
+              <li><a href="#">Sports</a></li>
+              <li><a href="#">Books</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+              <p><i class="fa-solid fa-phone"></i> +998 90 123 4567</p>
+              <p><i class="fa-solid fa-envelope"></i> info@onlineshop.com</p>
+              <p>
+                <i class="fa-solid fa-location-dot"></i> Tashkent, Uzbekistan
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-bottom-content">
+            <p>&copy; 2026 Online Shop. All rights reserved.</p>
+            <div class="payment-methods">
+              <i class="fa-brands fa-cc-visa"></i>
+              <i class="fa-brands fa-cc-mastercard"></i>
+              <i class="fa-brands fa-cc-paypal"></i>
+              <i class="fa-brands fa-cc-stripe"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll to Top Button -->
+      <button class="scroll-to-top" id="scrollToTop">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </footer>
     
 
-      <script src="../js/shop.js"></script>
-      <script src="../js/main.js"></script>
-  </body>
+
+      <script src="../js/best.js"></script>
+    </body>
 </html>
