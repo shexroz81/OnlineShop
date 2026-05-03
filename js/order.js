@@ -31,8 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  const form = document.querySelector("form");
+  const usernameInput = document.querySelector('input[type="text"]');
   const passwordInput = document.querySelector(".password-box input");
   const eyeBtn = document.querySelector(".eye i");
+  const loginBtn = document.querySelector('button[type="submit"]');
 
   if (passwordInput && eyeBtn) {
     eyeBtn.addEventListener("click", () => {
@@ -45,6 +48,19 @@ document.addEventListener("DOMContentLoaded", () => {
         eyeBtn.classList.remove("fa-eye-slash");
         eyeBtn.classList.add("fa-eye");
       }
+    });
+  }
+
+  if (form && usernameInput && passwordInput && loginBtn) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const userData = {
+        username: usernameInput.value,
+        password: passwordInput.value
+      };
+
+      console.log(userData);
     });
   }
 });
