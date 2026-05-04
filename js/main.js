@@ -1,4 +1,4 @@
- const bar = document.querySelector(".bars");
+const bar = document.querySelector(".bars");
 const mobileMenu = document.querySelector(".mobile-menu");
 const closeBtn = document.querySelector(".mobile-close");
 const pagesBtn = document.querySelector(".text-one h3");
