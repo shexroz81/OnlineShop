@@ -474,8 +474,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 210px;
-  cursor: pointer;
+  margin-top: 120px;
+  cursor: pointer;  
   transition: all 0.3s ease-in;
   box-shadow:  0 0 5px rgba(0,0,0,0.2);
 }
@@ -611,7 +611,7 @@ body {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: #DD3333;
+  background: #0A472E;
   color: white;
   font-family: "DM Sans", sans-serif;
   font-size: 12px;
@@ -1527,4 +1527,161 @@ footer {
 .popup-x:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
+}
+
+
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   RESPONSIVE DESIGN (Media Queries)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Katta ekranlar uchun (Desktop - 1200px gacha) */
+@media (max-width: 1440px) {
+    #products, #searchbar, #shop-toolbar {
+        max-width: 95%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* 2. Planshetlar uchun (Laptop/Tablet - 1024px) */
+@media (max-width: 1024px) {
+    #products {
+        grid-template-columns: repeat(3, 1fr); /* 4 tadan 3 tagacha kamayadi */
+        gap: 20px;
+    }
+
+    .sub-header-container {
+        gap: 50px; /* Headerdagi bo'shliq qisqaradi */
+        justify-content: space-between;
+    }
+
+    .product, .p-image {
+        width: 100%; /* Kartalar konteynerga moslashadi */
+        max-width: 280px;
+        margin: 0 auto 40px;
+    }
+
+    #cart-sidebar {
+        width: 350px;
+    }
+}
+
+/* 3. Kichik planshetlar uchun (Tablet - 768px) */
+@media (max-width: 768px) {
+    /* Navbar va Header */
+    .sub-header-container {
+        display: none; /* Mobil qurilmalarda kichik headerni yashirish (ixtiyoriy) */
+    }
+
+    .navbar-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Qidiruv paneli */
+    .searchbar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .dropdown, .search-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Mahsulotlar gridi */
+    #products {
+        grid-template-columns: repeat(2, 1fr); /* 2 tadan ustun */
+        padding: 30px 15px;
+    }
+
+    #products.list-view .product {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #products.list-view .p-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Toolbar (Saralash qismi) */
+    .toolbar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    #favor {
+        width: 80%; /* Sevimlilar paneli mobil uchun kengayadi */
+    }
+}
+
+/* 4. Mobil telefonlar uchun (Mobile - 480px) */
+@media (max-width: 480px) {
+    #products {
+        grid-template-columns: 1fr; /* Hammasi bitta qatorga tushadi */
+    }
+
+    .logo a {
+        font-size: 22px;
+    }
+
+    .call {
+        display: none; /* Joy tejash uchun telefon raqamni yashirish */
+    }
+
+    .header-icons {
+        gap: 10px;
+    }
+
+    #cart-sidebar {
+        width: 100%; /* Savatcha butun ekranni egallaydi */
+    }
+
+    .p-image {
+        height: 250px;
+    }
+
+    /* Popup oynasi mobil uchun */
+    .popup-content {
+        min-width: 90%;
+        padding: 30px 20px;
+    }
+
+    .popup-message {
+        width: 90%;
+        font-size: 14px;
+    }
+
+    /* Footer pastki qismi */
+    .footer-bottom-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (hover: none) {
+    .p-icons {
+        visibility: visible;
+        position: relative;
+        height: auto;
+        margin-top: 10px;
+    }
+
+    .add-product {
+        margin-top: 10px;
+    }
+
+    .product:hover .p-image img {
+        transform: none;
+    }
 }

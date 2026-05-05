@@ -169,9 +169,6 @@ function renderProducts() {
         <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
         <div class="p-icons">
           <div class="icons">
-            <i class="fa-brands fa-sistrix" title="Quick View"></i>
-            <i class="fa-regular fa-heart" title="Wishlist"></i>
-            <i class="fa-solid fa-retweet" title="Compare"></i>
           </div>
           <div class="add-product" title="Add to Cart">
             <i class="fa-solid fa-plus"></i>
