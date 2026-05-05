@@ -1,95 +1,109 @@
-// Products
-async function getProducts() {
-  try {
-    const searchbox = document.getElementById("best-products");
-    const res = await fetch("https://dummyjson.com/products");
-    const data = await res.json();
-
-    data.products.slice(0, 30).forEach((product) => {
-      searchbox.innerHTML += `
-        <div class="items">
-          <img src="${product.thumbnail}" alt="${product.title}">
-          <div class="card-content">
-            <h3>${product.title}</h3>
-            <p>$${product.price}</p>
-            <div class="rating">
-              <span class="stars">(${product.rating})</span>
-              <span class="number">${product.rating}</span>
-            </div>
-            <span>${product.description}</span>
-            <button class="buy-btn">Buy Now</button>
-          </div>
-        </div>
-      `;
-    });
-  } catch (error) {
-    console.error("Products olishda xatolik:", error);
-  }
-}
-
-getProducts();
-
-// Search functionality
+// 1. tavar kazinkasi
+let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+const container = document.getElementById("best-products");
 const searchInput = document.querySelector(".search-input input");
 
-async function searchProduct() {
-  const searchTerm = searchInput.value.trim();
+// localStorage ga saqlangan ma'lumotlarni yangilash
+updateCartUI();
 
-  if (!searchTerm) {
-    return alert("Iltimos, qidiruv maydonini to'ldiring!");
-  } else if (searchTerm.length < 3) {
-    return alert("Iltimos, kamida 3 ta harf kiriting!");
-  }
-
-  try {
-    const response = await fetch(
-      `https://dummyjson.com/products/search?q=${searchTerm}`,
-    );
-    const data = await response.json();
-
-    if (data.products.length > 0) {
-      const product = data.products[0];
-      const searchbox = document.getElementById("searchbox");
-
-      // Yangi items qo'shish
-      searchbox.innerHTML += `
-        <div class="items">
-          <img src="${product.thumbnail}" alt="${product.title}">
-          <div class="card-content">
-            <h3>${product.title}</h3>
-            <p>$${product.price}</p>
-            <div class="rating">
-              <span class="stars">(${product.rating})</span>
-              <span class="number">${product.rating}</span>
-            </div>
-            <span>${product.description}</span>
-            <button class="buy-btn">Buy Now</button>
-          </div>
+// 2. function sort products
+function renderProducts(products) {
+  container.innerHTML = ""; // Очищаем контейнер
+  products.forEach((product) => {
+    const card = document.createElement('div');
+    card.className = 'items';
+    card.innerHTML = `
+      <img src="${product.thumbnail}" alt="${product.title}">
+      <div class="card-content">
+        <h3>${product.title}</h3>
+        <p>$${product.price}</p>
+        <div class="rating">
+          <span>★ ${product.rating}</span>
         </div>
-      `;
+        <span class='description'>${product.description.slice(0, 50)}...</span>
+        <button class="buy-btn">Buy Now</button>
+      </div>`;
 
-      // Items soni 4 taga yetganda wrap qilish
-      if (searchbox.children.length >= 4) {
-        searchbox.style.flexWrap = "wrap";
-        document.querySelectorAll(".items").forEach((item) => {
-          item.style.flex = "none";
-        });
-      }
-    } else {
-      return alert("Izlash natijalari chiqmadi!");
-    }
-  } catch (error) {
-    console.error("Search error:", error);
-  }
+    card.querySelector('.buy-btn').onclick = () => addToCart(product);
+    container.appendChild(card);
+  });
 }
 
-// Event listeners
-searchInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    searchProduct();
-  }
-});
+// 3. boshidagi 30 tavar olib kelish
+async function getProducts() {
+  try {
+    const res = await fetch("https://dummyjson.com/products");
+    const data = await res.json();
+    renderProducts(data.products.slice(0, 30));
+  } catch (err) { console.error("Ошибка загрузки:", err); }
+}
+getProducts();
 
-// Search button click
-const searchBtn = document.querySelector(".search-input button");
-searchBtn.addEventListener("click", searchProduct);
+// 4. qidiruv funksiyasi
+async function searchProduct() {
+  const searchTerm = searchInput.value.trim();
+  if (!searchTerm) return alert("Введите название!");
+
+  try {
+    const res = await fetch(`https://dummyjson.com/products/search?q=${searchTerm}`);
+    const data = await res.json();
+    if (data.products.length > 0) {
+      renderProducts(data.products);
+    } else {
+      alert("Ничего не найдено!");
+    }
+  } catch (err) { console.error("Ошибка поиска:", err); }
+}
+
+// 5. karzinka ishlashi 
+function addToCart(product) {
+  const existing = cart.find(item => item.id === product.id);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      img: product.thumbnail,
+      quantity: 1
+    });
+  }
+  syncCart();
+}
+
+function removeItem(id) {
+  cart = cart.filter(item => item.id !== id);
+  syncCart();
+}
+
+function syncCart() {
+  localStorage.setItem('myCart', JSON.stringify(cart));
+  updateCartUI();
+}
+
+function updateCartUI() {
+  document.getElementById('cart-count').innerText = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const list = document.getElementById('cart-items-list');
+  const totalLabel = document.getElementById('total-price-sum');
+  
+  list.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${item.img}" width="40">
+      <span>${item.title} (x${item.quantity})</span>
+      <span>$${item.price * item.quantity}</span>
+      <button onclick="removeItem(${item.id})">❌</button>
+    </div>`).join("");
+
+  totalLabel.innerText = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
+// 6. qidiruv uchun enter bosish va tugma bosish
+searchInput.addEventListener("keypress", (e) => { if (e.key === "Enter") searchProduct(); });
+document.querySelector(".search-input button").onclick = searchProduct;
+
+// 7. modalni ochish va yopish
+const modal = document.getElementById('cart-modal');
+document.getElementById('open-cart-btn').onclick = () => modal.style.display = 'block';
+document.querySelector('.close-btn').onclick = () => modal.style.display = 'none';
+document.getElementById('clear-cart').onclick = () => { cart = []; syncCart(); };

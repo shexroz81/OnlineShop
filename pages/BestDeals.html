@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-    </header>
+    </header><br>
     <!--end of header-->
     <!-- Best Deals Section -->
     <section id="best-deals">
@@ -119,8 +119,10 @@
                 <i class="fa-solid fa-heart"></i>
               </div>
               <div class="icon-item">
-                <i class="fa-solid fa-shopping-cart" id="cart"></i>
-                <span class="cart-count" id="cart-count">0</span>
+                <button id="open-cart-btn">
+                  <i class="fa-solid fa-shopping-cart" id="cart"></i>
+                  <span class="cart-count" id="cart-count">0</span>
+                </button>
               </div>
               <div class="icon-item">
                 <button id="toggle"><i class="fa-solid fa-moon"></i></button>
@@ -146,8 +148,8 @@
               </div>
               <div class="choose-bar">
                 <ul>
-                  <li><button><i class="fa-solid fa-list"></i></button></li>
-                  <li><button><i class="fa-solid fa-grip-horizontal"></i></button></li>
+                  <li><button class="list-bar"><i class="fa-solid fa-list"></i></button></li>
+                  <li><button class="horizantal-bar"><i class="fa-solid fa-grip-horizontal"></i></button></li>
                   <li>
                     <select name="" id="sort">
                       <option value="">Default sorting</option>
@@ -168,6 +170,22 @@
         </div>
       </div>
     </section>
+
+    <!-- CART SIDEBAR -->
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <h2>Ваша корзина</h2>
+          <div id="cart-items-list">
+              <!-- tavarlar joyi -->
+          </div>
+          <hr>
+          <div class="total-price-block">
+              <strong>Итого: $<span id="total-price-sum">0</span></strong>
+          </div>
+          <button id="clear-cart">Очистить всё</button>
+      </div>
+    </div>
 
     <footer>
       <div class="footer-container">
