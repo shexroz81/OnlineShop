@@ -753,21 +753,3 @@ body {
   opacity: 0.3;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .topbar, .navbar, .searchbar-wrap, .main-content {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .nav-links { display: none; }
-  .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
-  }
-  .cart-sidebar { width: 100%; }
-}

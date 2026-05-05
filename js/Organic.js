@@ -1,4 +1,3 @@
-// ===== STATE =====
 let allProducts = [];
 let cart = [];
 let currentView = 'grid';
@@ -51,7 +50,6 @@ async function fetchProducts(searchTerm = '') {
   showLoading(false);
 }
 
-// ===== SORT =====
 function sortProducts(products) {
   const arr = [...products];
   switch (currentSort) {
@@ -70,7 +68,6 @@ function sortProducts(products) {
   }
 }
 
-// ===== UPDATE HEADER =====
 function updateHeader(term, count) {
   const title = term.charAt(0).toUpperCase() + term.slice(1);
   categoryTitle.textContent = `Category: ${title}`;
@@ -79,7 +76,6 @@ function updateHeader(term, count) {
   resultCount.textContent = `Showing All ${count} Results`;
 }
 
-// ===== RENDER PRODUCTS =====
 function renderProducts(products) {
   productsGrid.innerHTML = '';
 
@@ -98,7 +94,6 @@ function renderProducts(products) {
   });
 }
 
-// ===== CREATE PRODUCT CARD =====
 function createProductCard(product, index) {
   const card = document.createElement('div');
   card.className = 'product-card';
@@ -133,7 +128,6 @@ function createProductCard(product, index) {
     </div>
   `;
 
-  // Add to cart button
   card.querySelector('.add-to-cart').addEventListener('click', (e) => {
     e.stopPropagation();
     addToCart(product);
@@ -142,7 +136,6 @@ function createProductCard(product, index) {
   return card;
 }
 
-// ===== LOADING =====
 function showLoading(show) {
   loading.style.display = show ? 'flex' : 'none';
   productsGrid.style.display = show ? 'none' : 'grid';
@@ -212,7 +205,6 @@ function closeCart() {
   cartOverlay.classList.remove('open');
 }
 
-// ===== DEPARTMENTS DROPDOWN =====
 function toggleDept() {
   const isOpen = deptDropdown.classList.toggle('open');
   deptChevron.style.transform = isOpen ? 'rotate(180deg)' : '';
@@ -228,7 +220,6 @@ document.querySelectorAll('.dept-item').forEach(item => {
   });
 });
 
-// Close dropdown when clicking outside
 document.addEventListener('click', (e) => {
   if (!deptBtn.contains(e.target) && !deptDropdown.contains(e.target)) {
     deptDropdown.classList.remove('open');
@@ -261,7 +252,6 @@ sortSelect.addEventListener('change', () => {
   resultCount.textContent = `Showing All ${allProducts.length} Results`;
 });
 
-// ===== VIEW TOGGLE =====
 gridViewBtn.addEventListener('click', () => {
   currentView = 'grid';
   productsGrid.classList.remove('list-view');
@@ -290,9 +280,7 @@ document.querySelector('.cart-btn').addEventListener('click', openCart);
 document.getElementById('closeCart').addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
-// ===== DEPT BUTTON =====
 deptBtn.addEventListener('click', toggleDept);
 
-// ===== INIT =====
 updateCartUI();
 fetchProducts();
