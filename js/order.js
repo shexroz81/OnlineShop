@@ -1,20 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const bar = document.getElementById("bar");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const closeBtn = document.querySelector(".mobile-close i");
-
-  if (bar && mobileMenu) {
-    bar.addEventListener("click", () => {
-      mobileMenu.classList.add("active");
-    });
-  }
-
-  if (closeBtn && mobileMenu) {
-    closeBtn.addEventListener("click", () => {
-      mobileMenu.classList.remove("active");
-    });
-  }
-
   const dropdownToggle = document.querySelector(".dropdown-toggle");
   const dropdownMenu = document.querySelector(".dropdown-menu");
 
@@ -32,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const form = document.querySelector("form");
-  const usernameInput = document.querySelector('input[type="text"]');
-  const passwordInput = document.querySelector(".password-box input");
+  const usernameInput = document.querySelector(".first");
+  const passwordInput = document.querySelector(".second");
   const eyeBtn = document.querySelector(".eye i");
   const loginBtn = document.querySelector('button[type="submit"]');
-
+  
   if (passwordInput && eyeBtn) {
     eyeBtn.addEventListener("click", () => {
       if (passwordInput.type === "password") {
@@ -50,17 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
+  
   if (form && usernameInput && passwordInput && loginBtn) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      const userData = {
-        username: usernameInput.value,
-        password: passwordInput.value
-      };
-
+ 
+      const userData =  [
+        {
+          username: usernameInput.value,
+          password: passwordInput.value
+        }
+      ]
+  
       console.log(userData);
     });
   }
-});
+})

@@ -68,7 +68,9 @@ header {
   color: var(--text);
   position: relative;
 }
-
+a{
+  color: var(--text);
+}
 .navbar-container {
   display: flex;
   justify-content: space-between;
