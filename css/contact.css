@@ -1,1 +1,161 @@
 /* Contact page styles */
+.page-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+
+  /* ========== SIDEBAR ========== */
+  .sidebar {
+    width: 230px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Search box at top */
+  .search-box {
+    display: flex;
+  }
+
+  .search-box input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-right: none;
+    font-size: 0.875rem;
+    outline: none;
+    background: #fff;
+  }
+
+  .search-box button {
+    padding: 8px 14px;
+    background: #444;
+    color: #fff;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+  }
+
+  .search-box button:hover {
+    background: #222;
+  }
+
+  /* Sidebar widget */
+  .widget {
+    border: 1px solid #c5d87a;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .widget h3 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 10px 14px;
+    background: #edf3c8;
+    border-bottom: 1px solid #c5d87a;
+    color: #333;
+  }
+
+  .widget ul {
+    list-style: none;
+    padding: 6px 0;
+  }
+
+  .widget ul li a {
+    display: block;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .widget ul li a:hover {
+    color: #6a9a30;
+    text-decoration: underline;
+  }
+
+  /* ========== MAIN CONTENT ========== */
+  .main-content {
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.875rem;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="number"],
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    color: #444;
+    background: #fff;
+    outline: none;
+    font-family: Arial, sans-serif;
+  }
+
+  .form-group input[type="number"] {
+    -webkit-appearance: auto;
+    appearance: auto;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #aaa;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #999;
+  }
+
+  .form-group textarea {
+    height: 130px;
+    resize: vertical;
+  }
+
+  .btn-submit {
+    padding: 11px 32px;
+    background: #222;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+
+  .btn-submit:hover {
+    background: #444;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 680px) {
+    .page-wrapper { flex-direction: column; }
+    .sidebar { width: 100%; }
+  }
