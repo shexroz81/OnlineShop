@@ -1,101 +1,182 @@
-const API = "https://dummyjson.com/products?limit=28";
+const API = 'https://dummyjson.com/products?limit=28'
 
-let allProducts = [];
-let filteredProducts = [];
-let currentView = "grid";
-let cart = [];
+let products = []
+let filtered = []
+let cart = []
+let view = 'grid'
 
 fetch(API)
   .then((res) => res.json())
   .then((data) => {
-    allProducts = data.products;
-    filteredProducts = [...allProducts];
-    render();
-  });
+    products = data.products
+    filtered = [...products]
+    render()
+  })
 
-function createCartSidebar() {
-  if (document.getElementById("cart-sidebar")) return;
+function render() {
+  renderProducts()
+  updateCount()
+  updateCartUI()
+}
 
-  const overlay = document.createElement("div");
-  overlay.id = "cart-overlay";
-  overlay.addEventListener("click", closeCart);
+function renderProducts() {
+  const container = document.getElementById('products')
+  container.innerHTML = ''
+  container.className = view === 'list' ? 'list-view' : ''
 
-  const sidebar = document.createElement("div");
-  sidebar.id = "cart-sidebar";
-  sidebar.innerHTML = `
-    <div class="cart-header">
-      <h2>Shopping Cart</h2>
-      <button class="cart-close" id="cart-close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="cart-items" id="cart-items"></div>
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total:</span>
-        <strong id="cart-total-price">$0.00</strong>
+  if (filtered.length === 0) {
+    container.innerHTML = '<p style="padding:60px;text-align:center;">Mahsulot topilmadi</p>'
+    return
+  }
+
+  filtered.forEach((item) => {
+    const div = document.createElement('div')
+    div.className = 'product'
+
+    const original = (item.price / (1 - item.discountPercentage / 100)).toFixed(2)
+    const hasDiscount = item.discountPercentage >= 10
+    const priceHTML = hasDiscount
+      ? `<s style="color:#aaa;font-size:13px;">$${original}</s> $${item.price.toFixed(2)}`
+      : `$${item.price.toFixed(2)}`
+
+    div.innerHTML = `
+      <div class="p-image">
+        ${hasDiscount ? '<span class="sale-badge">Sale!</span>' : ''}
+        <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
+        <div class="p-icons">
+          <div class="add-product" title="Add to Cart">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </div>
       </div>
-      <button class="checkout-btn">Checkout</button>
-      <button class="continue-btn" onclick="closeCart()">Continue Shopping</button>
-    </div>
-  `;
+      <div class="p-info">
+        <h1>${item.title}</h1>
+        <div class="p-rating">${renderStars(item.rating)} <span>(${item.rating})</span></div>
+        <p class="p-desc">${item.description}</p>
+        <div class="p-price">${priceHTML}</div>
+        <button class="add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+      </div>
+    `
 
-  document.body.appendChild(overlay);
-  document.body.appendChild(sidebar);
+    div.querySelector('.add-product').onclick = () => addToCart(item)
+    div.querySelector('.add-to-cart-btn').onclick = () => addToCart(item)
 
-  document.getElementById("cart-close").addEventListener("click", closeCart);
+    container.appendChild(div)
+  })
 }
 
-function openCart() {
-  document.getElementById("cart-sidebar").classList.add("open");
-  document.getElementById("cart-overlay").classList.add("open");
-  document.body.style.overflow = "hidden";
+function renderStars(rating) {
+  let stars = ''
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) stars += '<i class="fa-solid fa-star"></i>'
+    else if (rating >= i - 0.5) stars += '<i class="fa-solid fa-star-half-stroke"></i>'
+    else stars += '<i class="fa-regular fa-star"></i>'
+  }
+  return stars
+}
+const searchInput = document.querySelector('.search-input input')
+const searchBtn = document.querySelector('.search-input button')
+
+function doSearch() {
+  const q = searchInput.value.trim().toLowerCase()
+  filtered = !q
+    ? [...products]
+    : products.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.description.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      )
+  render()
 }
 
-function closeCart() {
-  document.getElementById("cart-sidebar").classList.remove("open");
-  document.getElementById("cart-overlay").classList.remove("open");
-  document.body.style.overflow = "";
+searchBtn.onclick = doSearch
+searchInput.onkeydown = (e) => {
+  if (e.key === 'Enter') doSearch()
+}
+
+let searchTimer
+searchInput.oninput = () => {
+  clearTimeout(searchTimer)
+  searchTimer = setTimeout(doSearch, 350)
+}
+document.getElementById('sort-select').onchange = function () {
+  switch (this.value) {
+    case 'low-high':
+      filtered.sort((a, b) => a.price - b.price)
+      break
+    case 'high-low':
+      filtered.sort((a, b) => b.price - a.price)
+      break
+    case 'rating':
+      filtered.sort((a, b) => b.rating - a.rating)
+      break
+    case 'latest':
+      filtered.sort((a, b) => b.id - a.id)
+      break
+    case 'popularity':
+      filtered.sort((a, b) => b.stock - a.stock)
+      break
+    default:
+      filtered = products.filter((p) =>
+        searchInput.value ? p.title.toLowerCase().includes(searchInput.value.toLowerCase()) : true
+      )
+  }
+  render()
+}
+
+document.getElementById('grid-btn').onclick = function () {
+  view = 'grid'
+  this.classList.add('active')
+  document.getElementById('list-btn').classList.remove('active')
+  render()
+}
+
+document.getElementById('list-btn').onclick = function () {
+  view = 'list'
+  this.classList.add('active')
+  document.getElementById('grid-btn').classList.remove('active')
+  render()
 }
 
 function addToCart(item) {
-  const existing = cart.find((c) => c.id === item.id);
+  const existing = cart.find((c) => c.id === item.id)
   if (existing) {
-    existing.qty++;
+    existing.qty++
   } else {
-    cart.push({ ...item, qty: 1 });
+    cart.push({ ...item, qty: 1 })
   }
-  updateCartUI();
-  openCart();
-  animateCartIcon();
+  openCart()
+  updateCartUI()
 }
 
 function removeFromCart(id) {
-  cart = cart.filter((c) => c.id !== id);
-  updateCartUI();
+  cart = cart.filter((c) => c.id !== id)
+  updateCartUI()
 }
 
 function changeQty(id, delta) {
-  const item = cart.find((c) => c.id === id);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) removeFromCart(id);
-  else updateCartUI();
+  const item = cart.find((c) => c.id === id)
+  if (!item) return
+  item.qty += delta
+  item.qty <= 0 ? removeFromCart(id) : updateCartUI()
 }
 
 function updateCartUI() {
-  const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
-  const count = cart.reduce((sum, c) => sum + c.qty, 0);
+  const total = cart.reduce((sum, c) => sum + c.price * c.qty, 0)
+  const count = cart.reduce((sum, c) => sum + c.qty, 0)
 
-  const badge = document.getElementById("cart-count");
+  const badge = document.getElementById('cart-count')
   if (badge) {
-    badge.textContent = count;
-    badge.style.display = count > 0 ? "flex" : "none";
+    badge.textContent = count
+    badge.style.display = count > 0 ? 'flex' : 'none'
   }
 
-  const totalEl = document.getElementById("cart-total-price");
-  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`;
+  const totalEl = document.getElementById('cart-total-price')
+  if (totalEl) totalEl.textContent = `$${total.toFixed(2)}`
 
-  const itemsEl = document.getElementById("cart-items");
-  if (!itemsEl) return;
+  const itemsEl = document.getElementById('cart-items')
+  if (!itemsEl) return
 
   if (cart.length === 0) {
     itemsEl.innerHTML = `
@@ -103,8 +184,8 @@ function updateCartUI() {
         <i class="fa-solid fa-cart-shopping"></i>
         <p>Your cart is empty</p>
       </div>
-    `;
-    return;
+    `
+    return
   }
 
   itemsEl.innerHTML = cart
@@ -127,143 +208,63 @@ function updateCartUI() {
     </div>
   `
     )
-    .join("");
+    .join('')
 }
 
-function animateCartIcon() {
-  const cartIcon = document.getElementById("cart");
-  if (!cartIcon) return;
-  cartIcon.classList.add("cart-bounce");
-  setTimeout(() => cartIcon.classList.remove("cart-bounce"), 400);
+function openCart() {
+  const sidebar = document.getElementById('cart-sidebar')
+  const overlay = document.getElementById('cart-overlay')
+  if (sidebar) sidebar.classList.add('open')
+  if (overlay) overlay.classList.add('open')
+  document.body.style.overflow = 'hidden'
 }
 
-function render() {
-  renderProducts();
-  updateCount();
-}
-
-function renderProducts() {
-  const container = document.getElementById("products");
-  container.innerHTML = "";
-  container.className = currentView === "list" ? "list-view" : "";
-
-  if (filteredProducts.length === 0) {
-    container.innerHTML = `<p style="padding:60px;text-align:center;font-family:'DM Sans',sans-serif;color:#888;">Mahsulot topilmadi.</p>`;
-    return;
-  }
-
-  filteredProducts.forEach((item) => {
-    const div = document.createElement("div");
-    div.classList.add("product");
-
-    const original = (item.price / (1 - item.discountPercentage / 100)).toFixed(2);
-    const hasDiscount = item.discountPercentage >= 10;
-
-    const priceHTML = hasDiscount
-      ? `<bdi><s style="color:#aaa;font-size:13px;font-weight:400;">$${original}</s> $${item.price.toFixed(2)}</bdi>`
-      : `<bdi>$${item.price.toFixed(2)}</bdi>`;
-
-    div.innerHTML = `
-      <div class="p-image">
-        ${hasDiscount ? `<span class="sale-badge">Sale!</span>` : ""}
-        <img src="${item.thumbnail}" alt="${item.title}" loading="lazy">
-        <div class="p-icons">
-          <div class="icons">
-          </div>
-          <div class="add-product" title="Add to Cart">
-            <i class="fa-solid fa-plus"></i>
-          </div>
-        </div>
-      </div>
-      <div class="p-info">
-        <h1>${item.title}</h1>
-        <div class="p-rating">${renderStars(item.rating)} <span>(${item.rating})</span></div>
-        <p class="p-desc">${item.description}</p>
-        ${priceHTML}
-        <button class="add-to-cart-btn"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
-      </div>
-    `;
-
-    div.querySelector(".add-product").addEventListener("click", () => addToCart(item));
-
-    div.querySelector(".add-to-cart-btn").addEventListener("click", () => addToCart(item));
-
-    container.appendChild(div);
-  });
-}
-
-function renderStars(rating) {
-  let stars = "";
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) stars += `<i class="fa-solid fa-star"></i>`;
-    else if (rating >= i - 0.5) stars += `<i class="fa-solid fa-star-half-stroke"></i>`;
-    else stars += `<i class="fa-regular fa-star"></i>`;
-  }
-  return stars;
+function closeCart() {
+  const sidebar = document.getElementById('cart-sidebar')
+  const overlay = document.getElementById('cart-overlay')
+  if (sidebar) sidebar.classList.remove('open')
+  if (overlay) overlay.classList.remove('open')
+  document.body.style.overflow = ''
 }
 
 function updateCount() {
-  const el = document.getElementById("results-count");
-  if (!el) return;
-  el.textContent = `Showing ${filteredProducts.length} Results`;
+  const el = document.getElementById('results-count')
+  if (el) el.textContent = `Showing ${filtered.length} Results`
 }
 
-const searchInput = document.querySelector(".search-input input");
-const searchBtn = document.querySelector(".search-input button");
+function createCartSidebar() {
+  if (document.getElementById('cart-sidebar')) return
 
-function doSearch() {
-  const q = searchInput.value.trim().toLowerCase();
-  filteredProducts = q
-    ? allProducts.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.description.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q)
-      )
-    : [...allProducts];
-  render();
+  const overlay = document.createElement('div')
+  overlay.id = 'cart-overlay'
+  overlay.onclick = closeCart
+
+  const sidebar = document.createElement('div')
+  sidebar.id = 'cart-sidebar'
+  sidebar.innerHTML = `
+    <div class="cart-header">
+      <h2>Shopping Cart</h2>
+      <button class="cart-close" id="cart-close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cart-total-price">$0.00</strong>
+      </div>
+      <button class="checkout-btn">Checkout</button>
+      <button class="continue-btn" onclick="closeCart()">Continue Shopping</button>
+    </div>
+  `
+
+  document.body.appendChild(overlay)
+  document.body.appendChild(sidebar)
+  document.getElementById('cart-close').onclick = closeCart
 }
 
-searchBtn.addEventListener("click", doSearch);
-searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+const cartBtn = document.getElementById('cart')
+if (cartBtn) cartBtn.onclick = openCart
 
-let searchTimer;
-searchInput.addEventListener("input", () => {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(doSearch, 350);
-});
 
-document.getElementById("sort-select").addEventListener("change", function () {
-  filteredProducts = [...filteredProducts];
-  switch (this.value) {
-    case "low-high":   filteredProducts.sort((a, b) => a.price - b.price); break;
-    case "high-low":   filteredProducts.sort((a, b) => b.price - a.price); break;
-    case "rating":     filteredProducts.sort((a, b) => b.rating - a.rating); break;
-    case "latest":     filteredProducts.sort((a, b) => b.id - a.id); break;
-    case "popularity": filteredProducts.sort((a, b) => b.stock - a.stock); break;
-    default:
-      filteredProducts = allProducts.filter((p) =>
-        searchInput.value ? p.title.toLowerCase().includes(searchInput.value.toLowerCase()) : true
-      );
-  }
-  render();
-});
-
-document.getElementById("grid-btn").addEventListener("click", function () {
-  currentView = "grid";
-  this.classList.add("active");
-  document.getElementById("list-btn").classList.remove("active");
-  render();
-});
-
-document.getElementById("list-btn").addEventListener("click", function () {
-  currentView = "list";
-  this.classList.add("active");
-  document.getElementById("grid-btn").classList.remove("active");
-  render();
-});
-
-document.getElementById("cart")?.addEventListener("click", openCart);
-
-createCartSidebar();
-updateCartUI();
+createCartSidebar()
+updateCartUI()
