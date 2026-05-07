@@ -33,3 +33,25 @@ horizontalBarBtn.addEventListener('click', () => {
     searchbox.classList.remove('list-mode');
 })
 
+const scrollToTopBtn = document.getElementById("scrollToTop");
+
+// Scroll bo‘lganda button chiqadi
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 200) {
+        scrollToTopBtn.classList.add("show");
+    } else {
+        scrollToTopBtn.classList.remove("show");
+    }
+
+});
+
+// Tepaga smooth scroll
+scrollToTopBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
