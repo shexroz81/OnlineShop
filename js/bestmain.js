@@ -8,7 +8,7 @@ updateCartUI();
 
 // 2. function sort products
 function renderProducts(products) {
-  container.innerHTML = ""; // Очищаем контейнер
+  container.innerHTML = "";
   products.forEach((product) => {
     const card = document.createElement('div');
     card.className = 'items';
@@ -35,14 +35,14 @@ async function getProducts() {
     const res = await fetch("https://dummyjson.com/products");
     const data = await res.json();
     renderProducts(data.products.slice(0, 30));
-  } catch (err) { console.error("Ошибка загрузки:", err); }
+  } catch (err) { console.error("Xatolik yuz berdi:", err); }
 }
 getProducts();
 
 // 4. qidiruv funksiyasi
 async function searchProduct() {
   const searchTerm = searchInput.value.trim();
-  if (!searchTerm) return alert("Введите название!");
+  if (!searchTerm) return alert("Iltimos, nom kiriting!");
 
   try {
     const res = await fetch(`https://dummyjson.com/products/search?q=${searchTerm}`);
@@ -50,9 +50,9 @@ async function searchProduct() {
     if (data.products.length > 0) {
       renderProducts(data.products);
     } else {
-      alert("Ничего не найдено!");
+      alert("Hech narsa topilmadi!");
     }
-  } catch (err) { console.error("Ошибка поиска:", err); }
+  } catch (err) { console.error("Xatolik yuz berdi:", err); }
 }
 
 // 5. karzinka ishlashi 
@@ -107,3 +107,44 @@ const modal = document.getElementById('cart-modal');
 document.getElementById('open-cart-btn').onclick = () => modal.style.display = 'block';
 document.querySelector('.close-btn').onclick = () => modal.style.display = 'none';
 document.getElementById('clear-cart').onclick = () => { cart = []; syncCart(); };
+
+// 8. kategoriyalar bo'yicha filter
+async function filterByCategory(category) {
+  try {
+    let url;
+    if (category === 'all') {
+      url = "https://dummyjson.com/products?limit=30";
+    } else {
+      url = `https://dummyjson.com/products/category/${category}`;
+    }
+
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    if (data.products.length > 0) {
+      renderProducts(data.products);
+    } else {
+      container.innerHTML = "<h3>bu kategoriyada hali mahsulotlar yo'q</h3>";
+    }
+  } catch (err) {
+    console.error("Xatolik yuz berdi:", err);
+  }
+}
+
+// topish uchun dropdown menyu elementlariga event listener qo'shish
+const categoryLinks = document.querySelectorAll('.dropdown-menu a');
+
+categoryLinks.forEach(link => {
+  link.onclick = (e) => {
+    e.preventDefault(); // Saytni yangilanishini oldini olish
+    
+    const category = link.getAttribute('data-category');
+    
+    // Tanlangan kategoriyaga mos mahsulotlarni filterlash
+    filterByCategory(category);
+    
+    // Dropdown menyusini yopish va tanlangan kategoriyani ko'rsatish
+    const toggleSpan = document.querySelector('.dropdown-toggle span');
+    if (toggleSpan) toggleSpan.innerText = link.innerText;
+  };
+});
