@@ -43,6 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
 
       console.log(userData);
+    form.reset();
+
     });
   }
 })
