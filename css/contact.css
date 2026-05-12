@@ -7,7 +7,6 @@
     align-items: flex-start;
   }
 
-  /* ========== SIDEBAR ========== */
   .sidebar {
     width: 230px;
     flex-shrink: 0;
@@ -16,7 +15,6 @@
     gap: 20px;
   }
 
-  /* Search box at top */
   .search-box {
     display: flex;
   }
@@ -46,7 +44,6 @@
     background: #222;
   }
 
-  /* Sidebar widget */
   .widget {
     border: 1px solid #c5d87a;
     background: #fff;
@@ -80,7 +77,6 @@
     text-decoration: underline;
   }
 
-  /* ========== MAIN CONTENT ========== */
   .main-content {
     flex: 1;
   }
@@ -154,7 +150,6 @@
     background: #444;
   }
 
-  /* ========== RESPONSIVE ========== */
   @media (max-width: 680px) {
     .page-wrapper { flex-direction: column; }
     .sidebar { width: 100%; }

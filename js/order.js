@@ -6,13 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     dropdownToggle.addEventListener("click", (e) => {
       e.stopPropagation();
       dropdownMenu.classList.toggle("active");
-      dropdownToggle.classList.toggle("active");
     });
 
-    document.addEventListener("click", () => {
-      dropdownMenu.classList.remove("active");
-      dropdownToggle.classList.remove("active");
-    });
+   
   }
 
   const form = document.querySelector("form");
@@ -20,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.querySelector(".second");
   const eyeBtn = document.querySelector(".eye i");
   const loginBtn = document.querySelector('button[type="submit"]');
-  
+
   if (passwordInput && eyeBtn) {
     eyeBtn.addEventListener("click", () => {
       if (passwordInput.type === "password") {
@@ -34,18 +30,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
+
   if (form && usernameInput && passwordInput && loginBtn) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
- 
-      const userData =  [
+
+      const userData = [
         {
           username: usernameInput.value,
           password: passwordInput.value
         }
       ]
-  
+
       console.log(userData);
     });
   }
