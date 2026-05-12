@@ -153,7 +153,6 @@ body[data-theme="dark"] footer {
   display: flex;
   list-style: none;
   gap: 2px;
-  flex: 1;
   flex-wrap: wrap;
 }
 
@@ -268,6 +267,7 @@ body[data-theme="dark"] footer {
 
 /* ===== SEARCH BOX ===== */
 .search-box {
+  
   display: flex;
   border: 1.5px solid #e0e0d0;
   border-radius: 8px;
