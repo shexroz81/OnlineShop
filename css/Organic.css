@@ -124,15 +124,33 @@ body[data-theme="dark"] footer {
   align-items: center;
   padding: 14px 60px;
   background: #ffffff;
-  gap: 24px;
+  gap: 35px;
   flex-wrap: wrap;
+  margin-left: 220px;
 }
 
-.logo {
+.navbar {
+  display: flex;
+  
+}
+
+.logo-link {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-phone {
+  font-weight: 700;
+  margin-left: 100px;
 }
 
 .logo h1 {
