@@ -7,7 +7,7 @@ dropdownToggle.addEventListener("click", () => {
   dropdownMenu.classList.toggle("active");
 });
 
-// Close dropdown when clicking outside
+// Dropdown menyu elementlariga bosganda mahsulotlarni filterlash
 document.addEventListener("click", (e) => {
   if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
     dropdownToggle.classList.remove("active");
@@ -33,3 +33,25 @@ horizontalBarBtn.addEventListener('click', () => {
     searchbox.classList.remove('list-mode');
 })
 
+const scrollToTopBtn = document.getElementById("scrollToTop");
+
+// Scroll bo‘lganda button chiqadi
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 200) {
+        scrollToTopBtn.classList.add("show");
+    } else {
+        scrollToTopBtn.classList.remove("show");
+    }
+
+});
+
+// Tepaga smooth scroll
+scrollToTopBtn.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});

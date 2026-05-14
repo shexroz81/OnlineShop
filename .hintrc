@@ -10,23 +10,21 @@
         "link-name": "off"
       }
     ],
+    "axe/forms": [
+      "default",
+      {
+        "select-name": "off"
+      }
+    ],
+    "no-inline-styles": "off",
     "compat-api/css": [
       "default",
       {
         "ignore": [
-          "min-width: fit-content",
-          "user-select"
+          "user-select",
+          "backdrop-filter"
         ]
       }
-    ],
-    "axe/forms": [
-      "default",
-      {
-        "select-name": "off",
-        "label": "off"
-      }
-    ],
-    "no-inline-styles": "off",
-    "button-type": "off"
+    ]
   }
 }

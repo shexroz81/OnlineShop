@@ -1,85 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organic</title>
 
-  <title>Organic</title>
-
-  <link rel="stylesheet" href="../css/Organic.css" />
-  <link rel="stylesheet" href="../css/index.css" />
-
-  <link rel="icon" type="image/png" href="../images/Icon-removebg-preview.png" />
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-</head>
-
-<body>
+    <link rel="stylesheet" href="/css/Organic.css" />
+    <link rel="stylesheet" href="/css/index.css" />
   
-
+    <link
+      rel="icon"
+      type="image/png"
+      href="/images/Icon-removebg-preview.png"
+    />
   
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
     <!-- TOP BAR -->
-    <div class="topbar">
-      <span>High Quality Products &amp; Services</span>
-      <div class="topbar-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-        <a href="#"><i class="fab fa-telegram"></i></a>
+    <div class="sub-header" style="margin-left: -40px; width: auto;">
+      <div class="sub-header-container">
+        <div class="sub-text">
+          <h4>High Quality Products &amp; Services</h4>
+        </div>
+        <div class="social">
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-pinterest"></i>
+          <i class="fa-brands fa-telegram"></i>
+        </div>
       </div>
     </div>
-  
-    <!-- NAVBAR -->
-    <nav class="navbar">
-      <div class="nav-logo">
-        <span class="logo-text">Online Shop</span>
-        <span class="logo-icon">🛒</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="./shop.html">Shop</a></li>
-        <li><a href="./BestDeals.html">Best Deals</a></li>
-        <li><a href="#" id="nav-organic">Organic Vegetables &amp; Fruits</a></li>
-        <li><a href="./Order.html">Orders</a></li>
-        <li><a href="./contact.html">Contact Us</a></li>
-      </ul>
-      <div class="nav-phone">
-        <i class="fas fa-phone"></i> Call Us: +998 90 123 4567
-      </div>
-    </nav>
-  
+
+  <!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">
+    <a href="../index.html" class="logo-link">
+      <h1>Online Shop</h1>
+      <img
+        src="../images/Icon-removebg-preview.png"
+        alt="Online Shop Logo"
+      />
+    </a>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="../index.html" class="active">Home</a></li>
+
+    <li><a href="./shop.html">Shop</a></li>
+
+    <li><a href="./BestDeals.html">Best Deals</a></li>
+
+    <li>
+      <a href="./Organic.html">Organic Vegetables &amp; Fruits</a>
+    </li>
+
+    <li><a href="./Order.html">Orders</a></li>
+
+    <li><a href="./contact.html">Contact Us</a></li>
+  </ul>
+
+  <div class="nav-phone">
+    <i class="fas fa-phone"></i>
+    Call Us: +998 90 123 4567
+  </div>
+</nav>
+
     <!-- SEARCH BAR -->
-    <div class="searchbar-wrap">
-      <div class="departments-btn" id="deptBtn">
+    <div class="searchbar-wrap" >
+      <div class="departments-btn" id="deptBtn" style="margin-left: 240px;">
         <i class="fas fa-bars"></i>
         <span>All Departments</span>
         <i class="fas fa-chevron-up" id="deptChevron"></i>
       </div>
+
       <!-- Dropdown -->
-      <div class="dept-dropdown" id="deptDropdown">
+      <div class="dept-dropdown" id="deptDropdown" style="margin-left: 230px;">
         <div class="dept-item" data-q="best deals">Best Deals</div>
         <div class="dept-item" data-q="bread">Bread</div>
         <div class="dept-item" data-q="deals">Deals</div>
         <div class="dept-item" data-q="juice">Juices</div>
         <div class="dept-item" data-q="organic">Organic</div>
-        <div class="dept-item" data-q="vegetables">Organic Vegetables &amp; Fruits</div>
+        <div class="dept-item" data-q="vegetables">
+          Organic Vegetables &amp; Fruits
+        </div>
       </div>
-  
-      <div class="search-box">
+
+      <div class="search-box" style="width: 750px;">
         <input type="text" id="searchInput" placeholder="Search products..." />
         <button id="searchBtn"><i class="fas fa-search"></i></button>
       </div>
-  
+
       <div class="nav-actions">
         <button class="icon-btn"><i class="fas fa-user"></i></button>
         <button class="icon-btn"><i class="fas fa-heart"></i></button>
@@ -87,24 +108,31 @@
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-count" id="cartCount">0</span>
         </button>
-        <button class="icon-btn theme-btn" id="themeBtn"><i class="fas fa-moon"></i></button>
+        <button class="icon-btn theme-btn" id="themeBtn">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
     </div>
-  
+
     <!-- MAIN CONTENT -->
     <main class="main-content">
       <!-- BREADCRUMB -->
-      <div class="breadcrumb" id="breadcrumb" style="display:none">
-        <span>Home</span> / <span>Products</span> / <span id="breadCat">Organic Vegetables &amp; Fruits</span>
+      <div class="breadcrumb" id="breadcrumb" style="display: none">
+        <span>Home</span> <span>Products</span>
+        <span id="breadCat">Organic Vegetables &amp; Fruits</span>
       </div>
-  
+
       <div class="content-header">
         <h2 id="categoryTitle">Category: Organic Vegetables &amp; Fruits</h2>
         <div class="content-controls">
           <span id="resultCount">Showing All 0 Results</span>
           <div class="view-btns">
-            <button class="view-btn active" id="gridViewBtn"><i class="fas fa-th"></i></button>
-            <button class="view-btn" id="listViewBtn"><i class="fas fa-list"></i></button>
+            <button class="view-btn active" id="gridViewBtn">
+              <i class="fas fa-th"></i>
+            </button>
+            <button class="view-btn" id="listViewBtn">
+              <i class="fas fa-list"></i>
+            </button>
           </div>
           <select id="sortSelect" class="sort-select">
             <option value="default">Default Sorting</option>
@@ -116,22 +144,20 @@
           </select>
         </div>
       </div>
-  
-      <div class="products-grid" id="productsGrid">
-        <!-- Products loaded here -->
-      </div>
-  
+
+      <div class="products-grid" id="productsGrid"></div>
+
       <div class="loading" id="loading">
         <div class="spinner"></div>
         <p>Loading products...</p>
       </div>
-  
-      <div class="no-results" id="noResults" style="display:none">
+
+      <div class="no-results" id="noResults" style="display: none">
         <i class="fas fa-search"></i>
         <p>No products found</p>
       </div>
     </main>
-  
+
     <!-- CART SIDEBAR -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
@@ -141,11 +167,14 @@
       </div>
       <div class="cart-items" id="cartItems"></div>
       <div class="cart-footer">
-        <div class="cart-total">Total: <strong id="cartTotal">$0.00</strong></div>
+        <div class="cart-total">
+          Total: <strong id="cartTotal">$0.00</strong>
+        </div>
         <button class="checkout-btn">Checkout</button>
       </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
       <div class="footer-container">
         <div class="footer-section">
@@ -166,11 +195,11 @@
           <div class="footer-links">
             <h3>Quick Links</h3>
             <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About Us</a></li>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="/pages/shop.html">About Us</a></li>
               <li><a href="#">Products</a></li>
-              <li><a href="#">Best Deals</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="/pages/BestDeals.html">Best Deals</a></li>
+              <li><a href="/pages/contact.html">Contact</a></li>
             </ul>
           </div>
 
@@ -179,7 +208,7 @@
             <ul>
               <li><a href="#">Electronics</a></li>
               <li><a href="#">Fashion</a></li>
-              <li><a href="#">Home & Garden</a></li>
+              <li><a href="#">Home &amp; Garden</a></li>
               <li><a href="#">Sports</a></li>
               <li><a href="#">Books</a></li>
             </ul>
@@ -210,16 +239,13 @@
         </div>
       </div>
 
-      <!-- Scroll to Top Button -->
+      <!-- Scroll to Top -->
       <button class="scroll-to-top" id="scrollToTop">
         <i class="fa-solid fa-arrow-up"></i>
       </button>
     </footer>
-  
-    <script src="../js/Organic.js"></script>
-    <script src="../js/main.js"></script>
-  </body>
-  </html>
 
-</body>
+    <script src="/js/Organic.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
 </html>
