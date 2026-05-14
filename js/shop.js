@@ -266,5 +266,26 @@ const cartBtn = document.getElementById('cart')
 if (cartBtn) cartBtn.onclick = openCart
 
 
+const menuToggle = document.getElementById('menu-toggle')
+const mobileMenu = document.getElementById('mobile-menu')
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open')
+})
+
+// Mobile menu linklariga click qilganda menu yopiladi
+document.querySelectorAll('#mobile-menu a').forEach((link) => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open')
+  })
+})
+
+// Tashqarida click qilsa menu yopiladi
+document.addEventListener('click', (e) => {
+  if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+    mobileMenu.classList.remove('open')
+  }
+})
+
 createCartSidebar()
 updateCartUI()
