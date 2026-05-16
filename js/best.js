@@ -7,7 +7,7 @@ dropdownToggle.addEventListener("click", () => {
   dropdownMenu.classList.toggle("active");
 });
 
-// Close dropdown when clicking outside
+// Dropdown menyu elementlariga bosganda mahsulotlarni filterlash
 document.addEventListener("click", (e) => {
   if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
     dropdownToggle.classList.remove("active");
