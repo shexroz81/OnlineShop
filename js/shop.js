@@ -109,11 +109,11 @@ function renderProducts() {
       </div>
     `;
 
-    div.querySelector(".add-product").onclick = function () {
+    div.querySelector(".add-product").onclick = () => {
       addToCart(item);
     };
 
-    div.querySelector(".add-to-cart-btn").onclick = function () {
+    div.querySelector(".add-to-cart-btn").onclick = () => {
       addToCart(item);
     };
 
@@ -147,7 +147,7 @@ function doSearch() {
   if (!q) {
     filtered = [...products];
   } else {
-    filtered = products.filter(function (p) {
+    filtered = products.filter((p) => {
       return (
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
@@ -161,7 +161,7 @@ function doSearch() {
 
 searchBtn.onclick = doSearch;
 
-searchInput.onkeydown = function (e) {
+searchInput.onkeydown = (e) => {
   if (e.key === "Enter") {
     doSearch();
   }
@@ -169,42 +169,42 @@ searchInput.onkeydown = function (e) {
 
 let searchTimer;
 
-searchInput.oninput = function () {
+searchInput.oninput = () => {
   clearTimeout(searchTimer);
 
-  searchTimer = setTimeout(function () {
+  searchTimer = setTimeout( () => {
     doSearch();
   }, 350);
 };
 
-document.getElementById("sort-select").onchange = function () {
+document.getElementById("sort-select").onchange = () => {
   switch (this.value) {
     case "low-high":
-      filtered.sort(function (a, b) {
+      filtered.sort((a, b) => {
         return a.price - b.price;
       });
       break;
 
     case "high-low":
-      filtered.sort(function (a, b) {
+      filtered.sort((a, b) => {
         return b.price - a.price;
       });
       break;
 
     case "rating":
-      filtered.sort(function (a, b) {
+      filtered.sort((a, b) => {
         return b.rating - a.rating;
       });
       break;
 
     case "latest":
-      filtered.sort(function (a, b) {
+      filtered.sort((a, b) => {
         return b.id - a.id;
       });
       break;
 
     case "popularity":
-      filtered.sort(function (a, b) {
+      filtered.sort((a, b) => {
         return b.stock - a.stock;
       });
       break;
@@ -216,7 +216,7 @@ document.getElementById("sort-select").onchange = function () {
   render();
 };
 
-document.getElementById("grid-btn").onclick = function () {
+document.getElementById("grid-btn").onclick = () => {
   view = "grid";
 
   this.classList.add("active");
@@ -226,7 +226,7 @@ document.getElementById("grid-btn").onclick = function () {
   render();
 };
 
-document.getElementById("list-btn").onclick = function () {
+document.getElementById("list-btn").onclick = () =>{
   view = "list";
 
   this.classList.add("active");
@@ -237,7 +237,7 @@ document.getElementById("list-btn").onclick = function () {
 };
 
 function addToCart(item) {
-  const existing = cart.find(function (c) {
+  const existing = cart.find((c) => {
     return c.id === item.id;
   });
 
@@ -256,7 +256,7 @@ function addToCart(item) {
 }
 
 function removeFromCart(id) {
-  cart = cart.filter(function (c) {
+  cart = cart.filter((c) =>{
     return c.id !== id;
   });
 
@@ -264,7 +264,7 @@ function removeFromCart(id) {
 }
 
 function changeQty(id, delta) {
-  const item = cart.find(function (c) {
+  const item = cart.find((c) => {
     return c.id === id;
   });
 
@@ -285,7 +285,7 @@ function updateCartUI() {
   let total = 0;
   let count = 0;
 
-  cart.forEach(function (item) {
+  cart.forEach((item) => {
     total += item.price * item.qty;
     count += item.qty;
   });
@@ -327,7 +327,7 @@ function updateCartUI() {
 
   let html = "";
 
-  cart.forEach(function (item) {
+  cart.forEach((item) =>{
     html += `
       <div class="cart-item">
 
