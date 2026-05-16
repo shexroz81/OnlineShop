@@ -7,8 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       dropdownMenu.classList.toggle("active");
     });
-
-   
   }
 
   const form = document.querySelector("form");
@@ -38,11 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const userData = [
         {
           username: usernameInput.value,
-          password: passwordInput.value
-        }
-      ]
+          password: passwordInput.value,
+        },
+      ];
 
       console.log(userData);
     });
   }
-})
+});
