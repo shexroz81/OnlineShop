@@ -325,6 +325,18 @@ function setupFoodCardIcons() {
   const foodCards = document.querySelectorAll(".food-card");
   const popUp = document.querySelector(".pop-up");
 
+  // Cart panel ochish/yopish
+  const cartIcon = document.getElementById("cart");
+  const cartClose = document.getElementById("cart-close");
+
+  cartIcon.addEventListener("click", () => {
+    document.getElementById("cart-panel").classList.toggle("active-cart");
+  });
+
+  cartClose.addEventListener("click", () => {
+    document.getElementById("cart-panel").classList.remove("active-cart");
+  });
+
   heartBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -381,12 +393,32 @@ function setupFoodCardIcons() {
     });
   });
 
-  cartBtns.forEach((btn) => {
+  cartBtns.forEach((btn, index) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
+
+      // Cart count oshirish
       const cartCount = document.getElementById("cart-count");
-      const currentCount = parseInt(cartCount.textContent);
-      cartCount.textContent = currentCount + 1;
+      cartCount.textContent = parseInt(cartCount.textContent) + 1;
+
+      // Heart bilan bir xil logika
+      const card = foodCards[index];
+      const title = card.querySelector("h3").textContent;
+      const price = card.querySelector(".price").textContent;
+      const img = card.querySelector("img").src;
+
+      const cartItems = document.getElementById("cart-items");
+      const item = document.createElement("div");
+      item.className = "favor-item";
+      item.innerHTML = `
+      <img src="${img}" alt="${title}">
+      <div class="favor-info">
+        <h4>${title}</h4>
+        <span>${price}</span>
+      </div>
+      <button class="remove-favor" onclick="this.parentElement.remove()">×</button>
+    `;
+      cartItems.appendChild(item);
     });
   });
 }
