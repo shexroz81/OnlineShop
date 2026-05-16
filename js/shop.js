@@ -38,7 +38,7 @@ function renderProducts() {
     return
   }
 
-  filtered.forEach(function (item) {
+  filtered.forEach((item) =>{
     const div = document.createElement('div')
 
     div.className = 'product'
@@ -106,7 +106,6 @@ function renderProducts() {
       </div>
     `
 
-<<<<<<< HEAD
     div.querySelector(".add-product").onclick = () => {
       addToCart(item);
     };
@@ -114,15 +113,6 @@ function renderProducts() {
     div.querySelector(".add-to-cart-btn").onclick = () => {
       addToCart(item);
     };
-=======
-    div.querySelector('.add-product').onclick = function () {
-      addToCart(item)
-    }
-
-    div.querySelector('.add-to-cart-btn').onclick = function () {
-      addToCart(item)
-    }
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
     container.appendChild(div)
   })
@@ -168,21 +158,14 @@ function doSearch() {
 
 searchBtn.onclick = doSearch
 
-<<<<<<< HEAD
 searchInput.onkeydown = (e) => {
   if (e.key === "Enter") {
     doSearch();
-=======
-searchInput.onkeydown = function (e) {
-  if (e.key === 'Enter') {
-    doSearch()
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
   }
 }
 
 let searchTimer
 
-<<<<<<< HEAD
 searchInput.oninput = () => {
   clearTimeout(searchTimer);
 
@@ -222,47 +205,6 @@ document.getElementById("sort-select").onchange = () => {
         return b.stock - a.stock;
       });
       break;
-=======
-searchInput.oninput = function () {
-  clearTimeout(searchTimer)
-
-  searchTimer = setTimeout(function () {
-    doSearch()
-  }, 350)
-}
-
-document.getElementById('sort-select').onchange = function () {
-  switch (this.value) {
-    case 'low-high':
-      filtered.sort(function (a, b) {
-        return a.price - b.price
-      })
-      break
-
-    case 'high-low':
-      filtered.sort(function (a, b) {
-        return b.price - a.price
-      })
-      break
-
-    case 'rating':
-      filtered.sort(function (a, b) {
-        return b.rating - a.rating
-      })
-      break
-
-    case 'latest':
-      filtered.sort(function (a, b) {
-        return b.id - a.id
-      })
-      break
-
-    case 'popularity':
-      filtered.sort(function (a, b) {
-        return b.stock - a.stock
-      })
-      break
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
     default:
       filtered = [...products]
@@ -271,13 +213,8 @@ document.getElementById('sort-select').onchange = function () {
   render()
 }
 
-<<<<<<< HEAD
 document.getElementById("grid-btn").onclick = () => {
   view = "grid";
-=======
-document.getElementById('grid-btn').onclick = function () {
-  view = 'grid'
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   this.classList.add('active')
 
@@ -286,13 +223,8 @@ document.getElementById('grid-btn').onclick = function () {
   render()
 }
 
-<<<<<<< HEAD
 document.getElementById("list-btn").onclick = () =>{
   view = "list";
-=======
-document.getElementById('list-btn').onclick = function () {
-  view = 'list'
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   this.classList.add('active')
 
@@ -302,15 +234,9 @@ document.getElementById('list-btn').onclick = function () {
 }
 
 function addToCart(item) {
-<<<<<<< HEAD
   const existing = cart.find((c) => {
     return c.id === item.id;
   });
-=======
-  const existing = cart.find(function (c) {
-    return c.id === item.id
-  })
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   if (existing) {
     existing.qty++
@@ -327,29 +253,17 @@ function addToCart(item) {
 }
 
 function removeFromCart(id) {
-<<<<<<< HEAD
   cart = cart.filter((c) =>{
     return c.id !== id;
   });
-=======
-  cart = cart.filter(function (c) {
-    return c.id !== id
-  })
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   updateCartUI()
 }
 
 function changeQty(id, delta) {
-<<<<<<< HEAD
   const item = cart.find((c) => {
     return c.id === id;
   });
-=======
-  const item = cart.find(function (c) {
-    return c.id === id
-  })
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   if (!item) {
     return
@@ -368,17 +282,10 @@ function updateCartUI() {
   let total = 0
   let count = 0
 
-<<<<<<< HEAD
   cart.forEach((item) => {
     total += item.price * item.qty;
     count += item.qty;
   });
-=======
-  cart.forEach(function (item) {
-    total += item.price * item.qty
-    count += item.qty
-  })
->>>>>>> b6afc25eccbb765b3fbc53d7309914d7e322a17a
 
   const badge = document.getElementById('cart-count')
 
