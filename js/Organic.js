@@ -52,24 +52,6 @@ async function fetchProducts(searchTerm = "") {
   showLoading(false);
 }
 
-// ===== SORT =====
-function sortProducts(products) {
-  const arr = [...products];
-  switch (currentSort) {
-    case "price-low":
-      return arr.sort((a, b) => a.price - b.price);
-    case "price-high":
-      return arr.sort((a, b) => b.price - a.price);
-    case "rating":
-      return arr.sort((a, b) => b.rating - a.rating);
-    case "popularity":
-      return arr.sort((a, b) => (b.stock || 0) - (a.stock || 0));
-    case "latest":
-      return arr.sort((a, b) => b.id - a.id);
-    default:
-      return arr;
-  }
-}
 
 // ===== UPDATE HEADER =====
 function updateHeader(term, count) {
