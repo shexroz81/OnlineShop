@@ -66,7 +66,7 @@ document.addEventListener("click", (e) => {
 // Dark Mode
 const btn = document.getElementById("toggle");
 
-// Sahifa yuklananda localStoragedan o'qi
+// Sahifa yuklananda localStorage
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark") {
   document.body.classList.add("dark");
