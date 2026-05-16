@@ -6,10 +6,10 @@ let cart = []
 let view = 'grid'
 
 fetch(API)
-  .then(function (res) {
+  .then((res) => {
     return res.json()
   })
-  .then(function (data) {
+  .then((data) => {
     products = data.products
     filtered = [...products]
     render()
