@@ -88,6 +88,8 @@ function renderProducts() {
 
         <h1>${item.title}</h1>
 
+        <h2><span>Category: </span> ${item.category}</h2>
+
         <div class="p-rating">
           ${renderStars(item.rating)}
           <span>(${item.rating})</span>
