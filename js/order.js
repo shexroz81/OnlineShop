@@ -33,8 +33,8 @@ const form = document.getElementById("loginForm");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("name").value.trim();
-  const password = document.getElementById("password").value.trim();
+  const email = document.getElementById("name").value;
+  const password = document.getElementById("password").value;
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
