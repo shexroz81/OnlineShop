@@ -6,8 +6,6 @@
       e.stopPropagation();
       dropdownMenu.classList.toggle("active");
     });
-
-   
   }
 
  // EYE BUTTON
@@ -75,20 +73,6 @@ Email: ${email}
       }
     );
 
-    if (response.ok) {
-
-      alert("Xabar yuborildi");
-
-    } else {
-
-      alert("Xatolik yuz berdi");
-
-    }
-
-  } catch (error) {
-
-    console.log(error);
-
+    if (response.ok) 
   }
-
 });
