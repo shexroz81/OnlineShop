@@ -62,7 +62,7 @@ function renderProducts() {
     let saleBadge = "";
 
     if (hasDiscount) {
-      saleBadge = `<span class="sale-badge">Sale!</span>`;
+      saleBadge = `<span class="sale-badge">S ale!</span>`;
     }
 
     div.innerHTML = `
